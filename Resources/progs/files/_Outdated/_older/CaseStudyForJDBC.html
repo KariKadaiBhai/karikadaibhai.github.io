@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to Great Kirikaalan Magic Show</title>
+  </head>
+  <style>
+    body {
+      background-color: #121212;
+      color: #edf5f8;
+    }
+    .Content {
+      color: #edf5f8;
+    }
+  </style>
+  <body>
+    <p class="Content">
+      <b><u>ALGORITHM:</u></b><br />
+      &nbsp;1. Create database using MySQL.<br />
+      &nbsp;2. Implement JDBC concepts.<br />
+      &nbsp;3. Produce the output.<br/><br/>
+      <u><b>Java Database Connectivity(JDBC): </b></u><br />&nbsp;JDBC stands
+      for Java Database Connectivity, which is a standard Java API for database
+      independent connectivity between the Java programming language and a wide
+      range of databases. JDBC is a specification that provides a complete set
+      of interfaces that allows for portable access to anunderlying database.
+      The JDBC library includes APIs for each of the tasks mentioned below that
+      are commonly associated with database usage.
+      <ul>
+        <li>
+          <p>Making a connection to a database.</p>
+        </li>
+        <li>
+          <p>reating SQL or MySQL statements.</p>
+        </li>
+        <li>
+          <p>Executing SQL or MySQL queries in the database.</p>
+        </li>
+        <li>
+          <p>Viewing & Modifying
+          the resulting records.</p>
+      </ul>
+      <b><u>JDBC Connectivity:</u></b><br/>
+      &nbsp;There are 5 steps to connect any java application with the database using JDBC.
+      These steps are as follows:
+      <ul>
+        <li>
+          <p>Register the Driver class.</p>
+        </li>
+        <li>
+          <p>Create connection.</p>
+        </li>
+        <li>
+          <p>Create statement.</p>
+        </li>
+        <li>
+          <p>Execute queries.</p>
+        </li>
+        <li>
+          <p>Close connection.</p>
+        </li>
+      </ul>
+      1) <b><u>Register the driver class: </u></b><br/>&nbsp;The forName() method of Class class is used to
+      register the driver class. This method is used to dynamically load the driver
+      class. <br />
+      <b>Syntax of forName() method: </b><br/>&nbsp;public static void forName(String
+      className)throws ClassNotFoundException
+      Example to register the OracleDriver class: <br/>&nbsp;Here, Java program is loading
+      oracle driver to establish database connection.<br/>
+      <b>&nbsp;Class.forName("oracle.jdbc.driver.OracleDriver");</b><br/>
+      &nbsp;try {<br/>&nbsp;&nbsp;Class.forName("oracle.jdbc.driver.OracleDriver");<br/>&nbsp;} catch (ClassNotFoundException ex) {<br/>&nbsp;&nbsp;System.out.println("Error: unable to
+      load driver class!");<br/>&nbsp;&nbsp;System.exit(1);<br/>&nbsp;}<br/><br/>
+      2) <b><u>Create the connection Object: </u></b><br/>&nbsp;The getConnection() method of
+DriverManager class is used to establish connection with the database.<br/>
+<b>Syntax:</b>
+<br/>
+<ol>
+  <li><p>public static Connection getConnection(String url) throws SQLException</p></li>
+  <li><p>public static Connection getConnection(String name, Strng password) throws SQLException</p></li>
+</ol>
+<br/>
+<b>Example:</b>
+<br/>
+&nbsp;Connection conn=DriverManager.getConnection(
+“jdbc:oracle:thin:@localhost:xe”,”system”, ”password”<br/>&nbsp;String URL =
+"jdbc:oracle:thin:username/password@amrood:1521:EMP";<br/>&nbsp;Connection
+conn = DriverManager.getConnection(URL);<br/><br/>
+3) <b><u>Create the Statement Object: </u></b><br/>&nbsp;The createStatement() method of Connection
+interface is used to create statement. The object of Statement is responsible to
+execute queries with the database.<br/>
+<b>Syntax:</b><br/>&nbsp;public Statement createStatement()throws SQLException
+<b>Example:</b><br/>&nbsp;Statement stmt=con.createStatement();<br/><br/>
+4) <b><u>Execute the query: </u></b><br/>&nbsp;The executeQuery() method of Statement interface is
+used to execute queries to the database. This method returns the object of
+ResultSet that can be used to get all the records of a table.<br/>
+<b>Syntax: </b><br/>&nbsp;public ResultSetexecuteQuery(String sql) throws SQLException
+<b>Example: </b><br/>&nbsp;ResultSet rs=stmt.executeQuery(“select * from emp”);<br/>
+&nbsp;While(rs.next()) {<br/>&nbsp;&nbsp;System.out.println(1)+” “ +rs.getString(2));<br/>&nbsp;}<br/><br/>
+5) <b><u>Close the Connection Object: </u></b><br/>&nbsp;By closing connection object statement and
+ResultSet will be closed automatically. The close() method of Connection
+interface is used to close the connection.
+<br/><b>Syntax: </b><br/>&nbsp;public void close()throws SQLException
+<br/><b>Example: </b><br/>&nbsp;con.close()<br/>
+<b>Example to Connect Java Application with Oracle database: </b><br/>&nbsp;In this example,
+we are connecting to an Oracle database and getting data from emp table.
+<br/>&nbsp;Here, system andoracle are the username and password of the Oracle
+database.<br/>&nbsp;
+Import<br/>&nbsp;java.sql.*;<br/>&nbsp;class<br/>&nbsp;OracleCo<br/>&nbsp;n{<br/>&nbsp;public static void
+main(String args[]){<br/>&nbsp;&nbsp;try{ <br/>&nbsp;&nbsp;&nbsp;&nbsp;Class.forName("oracle.jdbc.driver.OracleDriver");
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;Connection con=DriverManager.getConnection(
+"jdbc:oracle:thin:@localhost:1521:xe","system","oracle");<br/>&nbsp;&nbsp;&nbsp;&nbsp;Statement
+stmt=con.createStatement();<br/>&nbsp;&nbsp;&nbsp;&nbsp;ResultSet rs=stmt.executeQuery("select *
+from emp");<br/>&nbsp;&nbsp;&nbsp;&nbsp;while(rs.next()){<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(rs.getInt(1)+"
+"+rs.getString(2)+" "+rs.getString(3));<br/>&nbsp;&nbsp;&nbsp;&nbsp;}<br/>&nbsp;&nbsp;&nbsp;&nbsp;con.close();<br/>&nbsp;&nbsp;}
+catch (Exception e) {<br/>&nbsp;&nbsp;&nbsp;System.out.println(e);<br/>&nbsp;&nbsp;}<br/>&nbsp;}
+    </p>
+  </body>
+</html>

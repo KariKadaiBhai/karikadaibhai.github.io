@@ -1,0 +1,27 @@
+AIM:
+  To create a java program to do type conversion.
+
+ALGORITHM:
+  Step 1: Start the program.
+  Step 2: Define a class and its methods.
+  Step 3: Declare and initialize variables ; i=100.
+  Step 4: Perform type conversion like long and float
+          Long l=i, float f=I;
+  Step 5: Display the result.
+  Step 6: Stop the program.
+
+PROGRAM:
+import java.io.*;
+
+class conversion  
+{
+    public static void main(String[] args) 
+    {         
+      int i = 100;
+      long l = i;
+      float f = l;
+      System.out.println("Int value " + i);
+      System.out.println("Long value " + l);
+      System.out.println("Float value " + f);
+    } 
+} 

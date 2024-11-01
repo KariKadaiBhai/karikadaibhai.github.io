@@ -1,0 +1,28 @@
+ALGORITHM:
+1. Create student database with all possible attributes
+2. Insert values using INSERT command
+3. Do modify the database with alter command
+4. Retrieve the database information using select
+5. Apply Update and Delete commands using some conditions.
+
+TABLE CREATION:
+	Create table Employee(Emp_id varchar(50) primary key, Emp_name varchar(50), Designation varchar(50), Salary varchar(50));
+	
+INSERT VALUES:
+	Insert into Employee values(1,'Andrew','Manager',35000);
+	Insert into Employee values(2,'Francis','Manager',35000);
+	Insert into Employee values(3,'Gladis','Analyst',25000);
+	Insert into Employee values(4,'Clare','Clerk',10000);
+	Insert into Employee values(5,'Merlin','Salesman',12000);
+
+ALTER TABLE:
+	Alter table Employee add Phone_no varchar(50);
+
+SELECT:
+	Select * from Employee;
+UPDATE:
+	Update Employee set Age=45 where Emp_name='Andrew';
+	Update Employee set Age=48 where Emp_name='Francis';
+	Update Employee set Age=30 where Emp_name='Gladis';
+	Update Employee set Age=35 where Emp_name='Clare';
+	Update Employee set Age=38 where Emp_name='Merlin';

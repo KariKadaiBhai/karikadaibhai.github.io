@@ -1,0 +1,63 @@
+import java.io.*;
+
+class array
+{
+  int a[][] = new int[2][2];
+  int b[][] = new int[2][2];
+  int c[][] = new int[2][2];
+  int i,j;
+
+  void get()
+  {
+    System.out.println("MATRIX-A");
+    for(i=0;i<a.length;i++)
+    {
+      for(j=0;j<a.length;j++)
+      {
+        a[i][j]=i+2;
+        System.out.print(a[i][j]+" ");
+      }
+    System.out.println(" ");
+    }
+    System.out.println("MATRIX-B");
+    for(i=0;i<b.length;i++)
+    {
+      for(j=0;j<b.length;j++)
+      {
+        b[i][j]=j+3;
+        System.out.print(b[i][j]+" ");
+      }
+      System.out.println(" ");
+    }
+  }
+  void cal()
+  {
+    for(i=0;i<a.length;i++)
+    {
+      for(j=0;j<b.length;j++)
+      {
+        c[i][j]=a[i][j]+b[i][j];
+      }
+    }
+  }
+  
+  void disp()
+  {
+    System.out.println("MATRIX - ADDITION");
+    for(i=0;i<a.length;i++)
+    {
+      for(j=0;j<b.length;j++)
+      {
+        System.out.print(c[i][j]+" ");
+      }
+      System.out.println(" ");
+    }
+  }
+  public static void main(String args[])
+  {
+    array ar=new array();
+    ar.get();
+    ar.cal();
+    ar.disp();
+  }
+}

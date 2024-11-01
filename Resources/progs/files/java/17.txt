@@ -1,0 +1,38 @@
+AIM:
+To create a border layout with layout manager using Java.
+
+ALGORITHM:
+  Step 1: Start the program
+  Step 2: Create class and extend Frame
+  Step 3: Create an object for Frame using Frame f= new Frame()
+  Step 4: Create Buttons and add buttons in layout usingBorderLayout() method
+  Step 5: Create a main class and create an object for Frame class and show layout.
+  Step 6: Stop the program
+
+PROGRAM:
+import java.awt.Frame;
+import java.awt.Button;
+import java.awt.BorderLayout;
+public class LayoutBorder extends Frame
+{
+  public LayoutBorder()
+  {
+    Frame f=new Frame("BORDERLAYOUT");
+    Button b1=new Button("North");
+    Button b2=new Button("South");
+    Button b3=new Button("East");
+    Button b4=new Button("West");
+    Button b5=new Button("Center");
+    f.add(b1,BorderLayout.NORTH);
+    f.add(b2,BorderLayout.SOUTH);
+    f.add(b3,BorderLayout.EAST);
+    f.add(b4,BorderLayout.WEST);
+    f.add(b5,BorderLayout.CENTER);
+    f.setSize(300,200);
+    f.setVisible(true);
+  }
+  public static void main(String args[])
+  {
+    LayoutBorder LB =new LayoutBorder();
+  }
+}

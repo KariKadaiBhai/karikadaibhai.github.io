@@ -1,0 +1,43 @@
+AIM:
+  To implement exceptions using Java.
+
+ALGORITHM:
+  Step 1: Start the program
+  Step 2: Declare array A with size 3
+  Step 3: Take out array variables
+  Step 4: Display the output
+  Step 5: Stop the program
+  Step 6: Compile and run the program
+  Step 7: It show I/O exception array index out of bounds
+  Step 8: Stop the program
+
+PROGRAM:
+1. Division By Zero Exception:
+  import java.io.*;
+
+  class exceptiondemo
+  {
+    public static void main(String args[])
+    {
+      int a=10,b=5,c=5;
+      int x=a/(b-c);
+      System.out.println("X="+ x);
+      int y=a/(b+c);
+      System.out.println("Y="+ y);
+    }
+  }
+
+2. Array Index Out of Bounds Exception:
+  import java.io.*;
+
+  class exceptiondemo2
+  {
+    public static void main(String args[])
+    {
+      int a[ ]={10,20,30};
+      System.out.println("A[0]="+a[0]);
+      System.out.println("A[1]="+a[1]);
+      System.out.println("A[2]="+a[2]);
+      System.out.println("A[3]="+a[3]);
+    } 
+}

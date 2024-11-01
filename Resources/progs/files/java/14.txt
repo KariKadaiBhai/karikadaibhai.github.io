@@ -1,0 +1,38 @@
+AIM:
+  To implement interface using Java.
+
+ALGORITHM:
+  Step 1: Start the program
+  Step 2: Create an interface I1with a variable.
+  Step 3: Create a class C1 and implement Interface
+  Step 4: Access the variable in interface I1 and use in main class to perform calculation.
+  Step 5: Create a main class with object to call the methods in C1.
+  Step 6: Print the results.
+  Step 7: Stop the program
+
+PROGRAM:
+import java.io.*;
+
+interface I1
+{
+  int r=6;
+}
+
+class C1 implements I1
+{
+  void display()
+  {
+    double pi=3.14;
+    System.out.println("Area of the Circle="+pi*r*r);
+  }
+}
+
+class interfacedemo
+{
+  public static void main(String args[])
+  {
+    System.out.println("Interface implementation");
+    C1 obj=new C1();
+    obj.display();
+  }
+}

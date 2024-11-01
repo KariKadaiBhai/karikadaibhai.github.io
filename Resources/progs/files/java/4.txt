@@ -1,0 +1,22 @@
+AIM:
+  To create a Java program to implement looping statements
+
+ALGORITHM:
+  Step 1: Start the Program
+  Step 2: Define a class to display odd numbers using for-loop
+  Step 3: Stop the program.
+
+PROGRAM:
+import java.io.*;
+
+public class forloop
+{
+  public static void main(String args[ ])
+  {
+    System.out.println("DISPLAY ODD NUMBERS");
+    for(int i=1;i<=10;i=i+2)
+    {
+      System.out.println("\n"+i);
+    }
+  }
+}

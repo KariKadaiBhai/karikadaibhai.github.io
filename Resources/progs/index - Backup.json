@@ -1,0 +1,16 @@
+{
+  "1": {
+    "ProgramName": "1. Simple AI Techniques Implementation",
+    "ContentToDisplay": "1. Simple AI Techniques Implementation",
+    "ReadFile": "1.txt",
+    "DownloadFile": "1.py",
+    "Downloadable": true
+  },
+  "2": {
+    "ProgramName": "2. Tic-Tac-Toe Game Implementation",
+    "ContentToDisplay": "2. Tic-Tac-Toe Game Implementation",
+    "ReadFile": "2.txt",
+    "DownloadFile": "2.py",
+    "Downloadable": true
+  }
+}

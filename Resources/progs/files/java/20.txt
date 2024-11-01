@@ -1,0 +1,56 @@
+AIM:
+  To create a Java program to create and add components in an applet.
+
+ALGORITHM:
+  Step 1: Start the program
+  Step 2: Create class which extends applet
+  Step 3: Create components
+  Step 4: The components are:
+            => Label
+            => TextField
+            => TextArea
+            => Checkbox
+            => Choice
+            => Button
+  Step 5: Add the GUI components in the frame
+  Step 6: Give applet code at the end of the program
+  Step 7: Stop the program
+
+PROGRAM:
+import java.awt.*;
+import java.applet.*;
+public class components extends Applet
+{
+  Label l1=new Label("Name");
+  TextField t1=new TextField(40);
+  TextArea ta=new TextArea(20,30);
+  Label l2=new Label("QUALIFICATION");
+  Checkbox c1=new Checkbox("UG",true);
+  Checkbox c2=new Checkbox("PG",false);
+  Label l3=new Label("PLACE OF BIRTH");
+  Label l4=new Label("STATE");
+  Choice ch1=new Choice();
+  List lt=new List();
+  Button b=new Button("OK");
+  
+  public void init()
+  {
+    add(l1);
+    add(t1);
+    add(ta);
+    add(l2);
+    add(c1);
+    add(c2);
+    add(l3);
+    ch1.add("PALANI");
+    ch1.add("COIMBATORE");
+    add(ch1);
+    add(l4);
+    lt.add("TAMILNADU");
+    lt.add("KERALA");
+    lt.add("KARNATAKA");
+    add(lt);
+    add(b);
+  }
+}
+//<applet code="components.java" height=400 width=500></applet>

@@ -1,0 +1,58 @@
+AIM:
+  To implement Inheritance concept using Java.
+
+ALGORITHM:
+  Step 1: Start the program
+  Step 2: Create super class Room with methods
+  Step 3: Declare variable in the super class
+  Step 4: Create Sub class and extend the super class
+  Step 4: Create main class
+  Step 5: Initialise variables in the main class
+  Step 6: Create object for subclass and call methods to perform calculation.
+  Step 7: Display the output
+
+PROGRAM:
+import java.io.*;
+
+class Room
+{
+  int length,width;
+  Room(int x, int y)
+  {
+    length = x;
+    width = y;
+  }
+  int area()
+  {
+    return(length*width);
+  }
+}
+
+class PoojaRoom extends Room
+{
+  int height;
+  PoojaRoom(int x,int y, int z)
+  { 
+    super(x,y);
+    height = z;
+  }
+  int volume()
+  {
+    return(length*width*height);
+  }
+}
+
+public class Inherit2
+{
+  public static void main(String args[])
+  {
+    PoojaRoom P = new PoojaRoom(10,30,40);
+    int A = P.area();
+    int V = P.volume();
+    System.out.println("INHERITANCE");
+    System.out.println("From Super-Class");
+    System.out.println("Area="+A);
+    System.out.println("From Sub-Class");
+    System.out.println("Volume="+V);
+  }
+}

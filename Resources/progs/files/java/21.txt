@@ -1,0 +1,58 @@
+AIM:
+  To create a Java program to implement event handling task in an applet.
+
+ALGORITHM:
+  Step 1: Start the program
+  Step 2: Create a class which extends Applet and implementing MouseListener
+  Step 3: Initialise an applet using init() method
+  Step 4: Invoke mouse Events to change colors accordingly
+  Step 5: The operations are:
+            => Clicked
+            => Entered
+            => Exited
+            => Pressed
+            => Released
+  Step 6: Stop the program
+
+PROGRAM:
+import java.awt.*;
+import java.applet.*;
+import java.awt.event.*;
+public class mouseevents extends Applet implements MouseListener
+{
+  public void init()
+  {
+    addMouseListener(this);
+  }
+  public void mouseClicked(MouseEvent e)
+  {
+    showStatus("Mouse Clicked at:"+e.getX()+","+e.getY());
+    setBackground(Color.cyan);
+    repaint();
+  }
+  public void mouseEntered(MouseEvent e)
+  {
+    setBackground(Color.green);
+    showStatus("Mouse Entered at:"+e.getX()+","+e.getY());
+    repaint();
+  }
+  public void mouseExited(MouseEvent e)
+  {
+    setBackground(Color.blue);
+    repaint();
+    showStatus("Mouse Exited at:"+e.getX()+","+e.getY());
+  }
+  public void mousePressed(MouseEvent e)
+  {
+    setBackground(Color.pink);
+    repaint();
+    showStatus("Mouse Pressed at:"+e.getX()+","+e.getY());
+  }
+  public void mouseReleased(MouseEvent e)
+  {
+    setBackground(Color.red);
+    repaint();
+    showStatus("Mouse Released at:"+e.getX()+","+e.getY());
+  }
+}
+/*<applet code="mouseevents.class" height="400" width="500"></applet>*/

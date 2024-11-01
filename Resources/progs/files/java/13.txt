@@ -1,0 +1,43 @@
+AIM:
+  To implement packages using Java.
+
+ALGORITHM:
+  Step 1: Create a new folder p2
+  Step 2: Inside p2, create a sub folder P1 and class C2
+  Step 3: Create a package p1 in class C1 inside folder p1
+  Step 4: Class c2 as a main class which imports package p1
+  Step 5: Perform the operation
+  Step 6: Display the output
+  Step 7: Stop the program
+
+PROGRAM:
+1. PACKAGE P1\C1.JAVA:
+  package p1;
+  public class c1
+  {
+    public void display()
+    {
+      int l=10;
+      int h=20;
+      System.out.println("I am from first Package");
+      int area=l*h;
+      System.out.println("Area of the Rectangle="+ area);
+    } 
+  }
+
+2. FOLDER P2\C2.JAVA:
+  import p1.*;
+  public class c2
+  {
+    public static void main(String args[])
+    {
+      c1 obj=new c1();
+      obj.display();
+      System.out.println("I am in the main class");
+      int a=30, b=40;
+      int c=a+b;
+      System.out.println("A=" +a);
+      System.out.println("B=" +b);
+      System.out.println("Addition of A,B=" +c);
+    }
+  }

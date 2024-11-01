@@ -1,0 +1,59 @@
+AIM:
+  To implement Multi-Threading using Java.
+
+ALGORITHM:
+  Step 1: Start the program
+  Step 2: Create Three classes and Extend Thread
+  Step 3: Declare variables and assign values for each Thread
+  Step 4: Create main class and objects for each class
+  Step 5: Start and Run the Threads through their objects
+  Step 5: Stop the program
+
+PROGRAM:
+import java.io.*;
+
+class A extends Thread
+{
+  public void run()
+  {
+    for(int i=1;i<=5;i++)
+    {
+      System.out.println("value from a i="+i);
+    }
+    System.out.println("exit from A");
+  }
+}
+
+class B extends Thread
+{
+  public void run()
+  {
+    for(int i=1;i<=5;i++)
+    {
+      System.out.println("value from b i="+i);
+    }
+    System.out.println("exit from B");
+  }
+}
+
+class C extends Thread
+{
+  public void run()
+  {
+    for(int i=1;i<=5;i++)
+    {
+      System.out.println("value from c i="+i);
+    }
+    System.out.println("exit from C");
+  }
+}
+
+class threaddemo
+{
+  public static void main(String args[])
+  {
+    new A().start();
+    new B().start();
+    new C().start();
+  }
+}

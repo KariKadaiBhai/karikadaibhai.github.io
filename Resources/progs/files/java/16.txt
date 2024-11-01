@@ -1,0 +1,27 @@
+AIM:
+  To create a grid layout with layout manager using Java.
+
+ALGORITHM:
+  Step 1: Start the program
+  Step 2: Create a class and extend Applet
+  Step 3: Declare init( )method
+  Step 4: Create Buttons and add buttons in Grid layout using
+          GridLayout()
+  Step 5: Create a main class and create an object for the applet class and show layout.
+  Step 6: Stop the program.
+
+PROGRAM:
+import java.awt.*;
+import java.applet.*;
+public class LayoutGrid extends Applet
+{
+  public void init()
+  {
+    for(inti=0;i<9;i++) 
+    {
+      setLayout(new GridLayout(3,3,5,5));
+      add(new Button(""+i));
+    }
+  }
+}
+//<applet code="LayoutGrid.class" height=400 width=500></applet>

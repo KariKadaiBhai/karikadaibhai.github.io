@@ -1,0 +1,25 @@
+AIM:
+  To create a java program to display name of the institution, year of establishment,department and your class.
+
+ALGORITHM:
+  Step 1: Start the Program
+  Step 2: Define a class and display name of the institution, year of establishment, department and your class using Output method
+  Step 3: Stop the program.
+
+
+PROGRAM:
+import java.io.*;
+
+class display 
+{
+  public static void main(String args[]) 
+  {
+    int year=2021;
+    System.out.println("OUR INSTITUTION DETAILS");
+    System.out.println("SRM Institute of Science and Technology");
+    System.out.println("Year of Establishment: " + year);
+    System.out.println("Department of Computer Science and Applications");
+    System.out.println("I- MCA");
+  }
+}
+

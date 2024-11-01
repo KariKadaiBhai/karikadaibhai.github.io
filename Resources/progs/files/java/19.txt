@@ -1,0 +1,28 @@
+AIM:
+  To create a Java program to fill shapes in an applet
+
+ALGORITHM:
+  Step 1: Start the program
+  Step 2: Create class and extend Applet
+  Step 4: Create paint( ) method to draw different shapes and fill method in an applet
+  Step 5: Create a main class to pain the shapes
+  Step 6: Stop the program
+
+PROGRAM:
+import java.awt.*;
+import java.applet.*;
+public class shapesfill extends Applet
+{
+  public void paint(Graphics g)
+  {
+    g.drawLine(40,10,70,10);
+    g.fillRect(40,30,30,40);
+    g.fillRoundRect(40,80,20,30,40,50);
+    g.fillRect(40,120,30,30);
+    g.fillRect(40,160,30,40);
+    g.fillOval(40,240,30,30); //Circle
+    g.fillOval(40,280,40,20); //Ellipse
+    g.fillArc(40,320,40,98,90,180);
+  }
+}
+//<applet code=shapesfill.class width=200 height=200></applet>

@@ -1,0 +1,26 @@
+AIM:
+  To write a java program to implement while-looping statements
+
+ALGORITHM:
+  Step 1: Start the Program
+  Step 2: Define a class to find sum of the series 1+2+3….+10 using while-loop.
+  Step 3: Stop the program
+
+
+PROGRAM:
+import java.io.*;
+
+class whiledemo
+{
+  public static void main(String args[] )
+  {
+    int i=1, sum=0;
+    while(i<=10)
+    {
+      System.out.println("i="+i);
+      sum=sum+i;
+      i++;
+    }
+    System.out.println("Sum of the series="+sum);
+  }
+}

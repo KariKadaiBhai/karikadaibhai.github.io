@@ -1,0 +1,29 @@
+AIM:
+  To create a flow layout with layout manager using Java.
+
+ALGORITHM:
+  Step 1: Start the program
+  Step 2: Create a class and extend Frame
+  Step 3: Declare array S[]
+  Step 4: Create an object for Frame using Frame f= new Frame()
+  Step 5: Create Buttons and add buttons in flowlayout using
+          FlowLayout()
+  Step 6: Create a main class and create an object for Frame class and show layout.
+  Step 7: Stop the program.
+
+PROGRAM:
+import java.awt.*;
+import java.applet.*;
+public class layout extends Applet
+{
+  String s[]={"ONE","TWO","THREE","FOUR","FIVE","SIX"};
+  public void init()
+  {
+    for(inti=0;i<5;i++)
+    {
+      setLayout(new FlowLayout());
+      add(new Button(s[i]));
+    }
+  }
+}
+//<applet code="layout.class" height=400 width=500></applet>
