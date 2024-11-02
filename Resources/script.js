@@ -16,23 +16,24 @@ async function initializeApp() {
   const pathToPasswordsJSON = config.pathToPasswordsJSON;
   const cookieExpiryTimeInMinutes = config.cookieExpireTimeInMinutes;
 
-  // Function to create a cookie
-  function setCookie(name, value, minutes) {
-    const date = new Date();
-    date.setTime(date.getTime() + minutes * 60 * 1000); // Set expiration time in milliseconds
-    const expires = 'expires=' + date.toUTCString();
-    document.cookie = name + '=' + value + ';' + expires + ';path=/';
+  // Function to set session data
+  function setSessionData(name, value) {
+    sessionStorage.setItem(
+      name,
+      JSON.stringify({ value, timestamp: Date.now() })
+    );
   }
 
-  // Function to get a cookie value by name
-  function getCookie(name) {
-    const nameEQ = name + '=';
-    const decodedCookie = decodeURIComponent(document.cookie);
-    const cookieArray = decodedCookie.split(';');
-    for (let i = 0; i < cookieArray.length; i++) {
-      let c = cookieArray[i].trim();
-      if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+  // Function to get session data by name
+  function getSessionData(name) {
+    const data = JSON.parse(sessionStorage.getItem(name));
+    if (
+      data &&
+      Date.now() - data.timestamp < cookieExpiryTimeInMinutes * 60 * 1000
+    ) {
+      return data.value; // Return the stored value if it's still valid
     }
+    sessionStorage.removeItem(name); // Remove expired data
     return null;
   }
 
@@ -41,11 +42,11 @@ async function initializeApp() {
     const response = await fetch(pathToPasswordsJSON);
     const passwordsData = await response.json();
 
-    // Check if any existing cookie matches
+    // Check if any existing session data matches
     for (const user in passwordsData) {
       const passwordData = passwordsData[user];
-      if (getCookie(passwordData.cookieData) === 'true') {
-        return true; // Skip prompt if cookie is found
+      if (getSessionData(passwordData.cookieData) === 'true') {
+        return true; // Skip prompt if session data is found
       }
     }
 
@@ -55,7 +56,7 @@ async function initializeApp() {
     for (const user in passwordsData) {
       const passwordData = passwordsData[user];
       if (enteredPassword === passwordData.password) {
-        setCookie(passwordData.cookieData, 'true', cookieExpiryTimeInMinutes);
+        setSessionData(passwordData.cookieData, 'true'); // Set session data
         return true;
       }
     }
