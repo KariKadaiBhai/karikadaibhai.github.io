@@ -1,0 +1,30 @@
+ALGORITHM:
+1. Create student database with all possible attributes
+2. Insert values using INSERT command
+3. Do modify the database with alter command
+4. Retrieve the database information using select
+5. Apply Update and Delete commands using some conditions.
+
+TABLE CREATION:
+	Create table Student (Regno varchar(50) primary key,Name varchar(50),Mark1 varchar(50),Mark2 varchar(50),Total varchar(50));
+
+INSERT VALUES:
+	Insert into Student values (01,'Ram',40,45,85);
+	Insert into Student values(02,'Nisha',45,45,90);
+	Insert into Student values(03,'Ajmal',30,50,80);
+	Insert into Student values(04,'Mani',37,42,79);
+	Insert into Student values(05,'Priya',50,45,95);
+
+ALTER TABLE:
+	Alter table Student add Age varchar(50);
+
+SELECT:
+	Select * from Student;
+
+UPDATE:
+	Update Student Set Age=21;
+	Update Student Set Age=23 where name='Mani';
+	Update Student Set Age=22 where name='Nisha';
+
+DELETE:
+	Delete from Student;

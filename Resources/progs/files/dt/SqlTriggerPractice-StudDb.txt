@@ -1,0 +1,41 @@
+ALGORITHM:
+1. Create student databases with all possible attributes
+2. Implement PL/SQL trigger over student database
+3. Produce the output relevant to the trigger.
+
+PROGRAM:
+TABLE CREATION:
+	Create table student(St_Id number(10) primary key,St_name varchar(20),Dept varchar(30),Scholar_amtnumber(10));
+
+INSERTING VALUES:
+	Insert into student values(100,’Nithya’,’BCA’,1200);
+	Insert into student values(101,’Gowtham’,’BCom’,1100);
+	Insert into student values(102,’Akshaya’,’BSC Cs’,1000);
+	Insert into student values(103,’Harish’,’Viscom’,900);
+	Insert into student values(104,’Arav’,’BBA’,800);
+
+DISPLAYING TABLE:
+	Select*from student;
+	
+TRIGGER CODE CREATION:
+	CREATE OR REPLACE TRIGGER amt
+	BEFORE DELETE OR INSERT OR UPDATE ON student
+	FOR EACH ROW
+	WHEN (NEW.scholar_amt > 0)
+	DECLARE
+		total_amt NUMBER;
+	BEGIN
+		IF INSERTING OR UPDATING THEN
+			total_amt := :NEW.scholar_amt - NVL(:OLD.scholar_amt, 0);
+			DBMS_OUTPUT.PUT_LINE('OLD amount: ' || NVL(:OLD.scholar_amt, 0));
+			DBMS_OUTPUT.PUT_LINE('NEW amount: ' || :NEW.scholar_amt);
+			DBMS_OUTPUT.PUT_LINE('Total amount: ' || total_amt);
+		ELSIF DELETING THEN
+			DBMS_OUTPUT.PUT_LINE('OLD amount: ' || :OLD.scholar_amt);
+			DBMS_OUTPUT.PUT_LINE('Total amount: ' || -1 * :OLD.scholar_amt);
+		END IF;
+	END;
+	/
+
+USING DML COMMANDS:
+	Update student set scholar_amt – scholar_amt+500 where St_ID=104;

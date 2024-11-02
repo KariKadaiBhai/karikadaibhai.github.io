@@ -1,0 +1,62 @@
+{
+  "1": {
+    "ProgramName": "1case_Study_ER_Diagram",
+    "ContentToDisplay": "1. Case Study for ER Diagram",
+    "ReadFile": "dt\\CaseStudyOfER.html",
+    "Downloadable": false
+  },
+  "2": {
+    "ProgramName": "2sql_Queries_Stud_DB",
+    "ContentToDisplay": "2. SQL Queries for Student Database",
+    "ReadFile": "dt\\StudDbQueries.txt",
+    "Downloadable": false
+  },
+  "3": {
+    "ProgramName": "3sql_Queries_Emp_DB",
+    "ContentToDisplay": "3. SQL Queries for Employee Database",
+    "ReadFile": "dt\\EmpDbQueries.txt",
+    "Downloadable": false
+  },
+  "4": {
+    "ProgramName": "4execution_Of_Join_Operations",
+    "ContentToDisplay": "4. Execution Of Join Operations",
+    "ReadFile": "dt\\ExeOfJoinOps.txt",
+    "Downloadable": false
+  },
+  "5": {
+    "ProgramName": "5practice_Triggers-SQL_Trigger_Stud_Db",
+    "ContentToDisplay": "5. Practice Triggers-SQL Trigger for Student Database",
+    "ReadFile": "dt\\SqlTriggerPractice-StudDb.txt",
+    "Downloadable": false
+  },
+  "6": {
+    "ProgramName": "6sample_Program_For_Joins",
+    "ContentToDisplay": "6. Sample Program For Joins",
+    "ReadFile": "dt\\SampleProgramForJoins.txt",
+    "Downloadable": false
+  },
+  "7": {
+    "ProgramName": "7case_Study_For_JDBC",
+    "ContentToDisplay": "7. Case Study for JDBC",
+    "ReadFile": "dt\\CaseStudyForJDBC.html",
+    "Downloadable": false
+  },
+  "8": {
+    "ProgramName": "8case_Study_For_Database Administration",
+    "ContentToDisplay": "8. Case Study for Database Administration",
+    "ReadFile": "dt\\CaseStudyDatabaseAdministration.html",
+    "Downloadable": false
+  },
+  "9": {
+    "ProgramName": "9case_Study_For_Recovery",
+    "ContentToDisplay": "9. Case Study for Recovery",
+    "ReadFile": "dt\\CaseStudyRecovery.html",
+    "Downloadable": false
+  },
+  "10": {
+    "ProgramName": "10case_Study_For_Database_Backups",
+    "ContentToDisplay": "10. Case Study for Database Backups",
+    "ReadFile": "dt\\CaseStudyDatabaseBackups.html",
+    "Downloadable": false
+  }
+}

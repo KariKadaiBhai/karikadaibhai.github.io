@@ -1,0 +1,39 @@
+ALGORITHM:
+1. Create two databases with all possible attributes
+2. Insert values using INSERT command
+3. Retrieve the database information using select
+4. Apply relational algebra join operations using select.
+
+TABLE CREATION 1:
+	Create table Customer(Id varchar(50) primary key,Name varchar(50),Age varchar(50),Address varchar(50),Salary varchar(50));
+
+INSERT VALUES:
+	insert into Customer values(1,'Ramesh',32,'Ahmedabad',2000);
+	insert into Customer values(2,'khinal',25,'Delhi',1500);
+	insert into Customer values(3,'komal',22,'Mumbai',4500);
+
+DISPLAYING TABLE 1:
+	Select * from Customer;
+
+TABLE CREATION 2:
+	Create table Orders(O_id varchar(50) primary key,Quantity varchar(50),Customer_id varchar(50),Amountvarchar(50));
+
+INSERT VALUES:
+	insert into Orders values(101,2,3,3000);
+	insert into Orders values(102,3,2,1500);
+	insert into Orders values(103,3,4,2060);
+
+DISPLAYING TABLE 2:
+	Select * from Orders;
+
+RELATIONAL ALGEBRA OEPRATION JOINNER JOIN:
+	SELECT Id, Name, Amount, Quantity FROM Customer INNER JOIN Orders ON Customer.Id = Orders.Customer_Id;
+
+LEFT OUTER JOIN:
+	SELECT Id, Name, Amount, Quantity FROM Customer LEFT JOIN Orders ON Customer.Id = Orders.Customer_Id;
+
+RIGHT OUTER JOIN:
+	SELECT Id, Name, Amount, Quantity FROM Customer RIGHT JOIN Orders ON Customer.Id = Orders.Customer_Id;
+
+FULL OUTER JOIN:
+	SELECT Id, Name, Amount, Quantity FROM Customer FULL OUTER JOIN Orders ON Customer.Id = Orders.Customer_Id;

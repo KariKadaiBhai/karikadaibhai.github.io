@@ -176,3 +176,13 @@ h1 {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+#irrungabhai.hiddenH2,
+#drivermairu.hiddenH2 {
+  display: none;
+}
+
+#irrungabhai.visibleH2,
+#drivermairu.visibleH2 {
+  display: block;
+}

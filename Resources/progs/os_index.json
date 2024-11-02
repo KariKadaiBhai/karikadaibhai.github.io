@@ -1,16 +1,72 @@
 {
   "1": {
-    "ProgramName": "1. Simple AI Techniques Implementation",
-    "ContentToDisplay": "1. Simple AI Techniques Implementation",
-    "ReadFile": "1.txt",
-    "DownloadFile": "1.py",
+    "ProgramName": "1. Basics of UNIX Commands",
+    "ContentToDisplay": "1. Basics of UNIX Commands",
+    "ReadFile": "os\\1.html",
+    "DownloadFile": "os\\1.pdf",
     "Downloadable": true
   },
   "2": {
-    "ProgramName": "2. Tic-Tac-Toe Game Implementation",
-    "ContentToDisplay": "2. Tic-Tac-Toe Game Implementation",
-    "ReadFile": "2.txt",
-    "DownloadFile": "2.py",
+    "ProgramName": "2. Implementation of System Calls In UNIX",
+    "ContentToDisplay": "2. Implementation of System Calls In UNIX",
+    "ReadFile": "os\\2.html",
+    "DownloadFile": "os\\2.pdf",
+    "Downloadable": true
+  },
+  "3": {
+    "ProgramName": "3. Shell Programming",
+    "ContentToDisplay": "3. Shell Programming",
+    "ReadFile": "os\\3.html",
+    "DownloadFile": "os\\3.pdf",
+    "Downloadable": true
+  },
+  "4": {
+    "ProgramName": "4. Implementation of Semaphores",
+    "ContentToDisplay": "4. Implementation of Semaphores",
+    "ReadFile": "os\\4.html",
+    "DownloadFile": "os\\4.pdf",
+    "Downloadable": true
+  },
+  "5": {
+    "ProgramName": "5. Implementation of Threading & Synchronization Applications",
+    "ContentToDisplay": "5. Implementation of Threading & Synchronization Applications",
+    "ReadFile": "os\\5.html",
+    "DownloadFile": "os\\5.pdf",
+    "Downloadable": true
+  },
+  "6": {
+    "ProgramName": "6. CPU Scheduling Algorithms",
+    "ContentToDisplay": "6. CPU Scheduling Algorithms",
+    "ReadFile": "os\\6.html",
+    "DownloadFile": "os\\6.pdf",
+    "Downloadable": true
+  },
+  "7": {
+    "ProgramName": "7. Implementation of Bankers Algorithm for Deadlock Detection",
+    "ContentToDisplay": "7. Implementation of Bankers Algorithm for Deadlock Detection",
+    "ReadFile": "os\\7.html",
+    "DownloadFile": "os\\7.pdf",
+    "Downloadable": true
+  },
+  "8": {
+    "ProgramName": "8. Implementation of Bankers Algorithm for Deadlock Avoidance",
+    "ContentToDisplay": "8. Implementation of Bankers Algorithm for Deadlock Avoidance",
+    "ReadFile": "os\\8.html",
+    "DownloadFile": "os\\8.pdf",
+    "Downloadable": true
+  },
+  "9": {
+    "ProgramName": "9. Implementation of Memory Management- Paging",
+    "ContentToDisplay": "9. Implementation of Memory Management- Paging",
+    "ReadFile": "os\\9.html",
+    "DownloadFile": "os\\9.pdf",
+    "Downloadable": true
+  },
+  "10": {
+    "ProgramName": "10. Optimal (LFU) Page Replacement Algorithms",
+    "ContentToDisplay": "10. Optimal (LFU) Page Replacement Algorithms",
+    "ReadFile": "os\\10.html",
+    "DownloadFile": "os\\10.pdf",
     "Downloadable": true
   }
 }
