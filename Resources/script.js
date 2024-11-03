@@ -123,37 +123,60 @@ async function initializeApp() {
   }
 
   // Check for the password before rendering the content
-  promptForPassword().then((isAuthenticated) => {
-    if (isAuthenticated) {
-      document.getElementById('irrungabhai').className = 'visibleH2';
-      document.getElementById('drivermairu').className = 'hiddenH2';
-      fetch(pathToFilesJSON)
-        .then((response) => response.json())
-        .then((jsonData) => {
-          if (Object.keys(jsonData).length === 0) {
-            document.getElementById('no_progs_div').className =
-              'no_progs_visible';
-          } else {
-            document.getElementById('no_progs_div').className =
-              'no_progs_hidden';
-            for (const programId in jsonData) {
-              const programData = jsonData[programId];
-              const pane = createPane(programId, programData);
-              document.getElementById('container').appendChild(pane);
+  if (!config.bypassPassword) {
+    promptForPassword().then((isAuthenticated) => {
+      if (isAuthenticated) {
+        document.getElementById('irrungabhai').className = 'visibleH2';
+        document.getElementById('drivermairu').className = 'hiddenH2';
+        fetch(pathToFilesJSON)
+          .then((response) => response.json())
+          .then((jsonData) => {
+            if (Object.keys(jsonData).length === 0) {
+              document.getElementById('no_progs_div').className =
+                'no_progs_visible';
+            } else {
+              document.getElementById('no_progs_div').className =
+                'no_progs_hidden';
+              for (const programId in jsonData) {
+                const programData = jsonData[programId];
+                const pane = createPane(programId, programData);
+                document.getElementById('container').appendChild(pane);
+              }
             }
+          })
+          .catch((error) => {
+            console.error('Error loading JSON file:', error);
+          });
+      } else {
+        document.getElementById('irrungabhai').className = 'hiddenH2';
+        document.getElementById('drivermairu').className = 'visibleH2';
+        document.getElementById('no_progs_div').className = 'no_progs_visible';
+        document.getElementById('no_progs_h1').innerHTML =
+          'Day and Night okkandhu ready pandravanuku thaan theriyum.. unaku laam enna _____ ah theriyum... <br> Password thappa potuta.. correct ah podu..';
+      }
+    });
+  } else {
+    document.getElementById('irrungabhai').className = 'visibleH2';
+    document.getElementById('drivermairu').className = 'hiddenH2';
+    fetch(pathToFilesJSON)
+      .then((response) => response.json())
+      .then((jsonData) => {
+        if (Object.keys(jsonData).length === 0) {
+          document.getElementById('no_progs_div').className =
+            'no_progs_visible';
+        } else {
+          document.getElementById('no_progs_div').className = 'no_progs_hidden';
+          for (const programId in jsonData) {
+            const programData = jsonData[programId];
+            const pane = createPane(programId, programData);
+            document.getElementById('container').appendChild(pane);
           }
-        })
-        .catch((error) => {
-          console.error('Error loading JSON file:', error);
-        });
-    } else {
-      document.getElementById('irrungabhai').className = 'hiddenH2';
-      document.getElementById('drivermairu').className = 'visibleH2';
-      document.getElementById('no_progs_div').className = 'no_progs_visible';
-      document.getElementById('no_progs_h1').innerHTML =
-        'Day and Night okkandhu ready pandravanuku thaan theriyum.. unaku laam enna _____ ah theriyum... <br> Password thappa potuta.. correct ah podu..';
-    }
-  });
+        }
+      })
+      .catch((error) => {
+        console.error('Error loading JSON file:', error);
+      });
+  }
 }
 
 // Call the initialize function to start the application

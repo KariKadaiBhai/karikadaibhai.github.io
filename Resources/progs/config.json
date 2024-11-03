@@ -1,5 +1,6 @@
 {
   "pathToFilesJSON": "./Resources/progs/java_index.json",
   "pathToPasswordsJSON": "./Resources/progs/passwords.json",
-  "cookieExpireTimeInMinutes": 2
+  "cookieExpireTimeInMinutes": 2,
+  "bypassPassword": false
 }
