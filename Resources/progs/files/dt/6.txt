@@ -1,0 +1,83 @@
+AIM:
+  To create an employee table that stores employee information and implement a trigger that captures and displays changes to the salary field whenever records are inserted, updated, or deleted. This program illustrates how to use triggers in SQL and outputs the changes made to the salary amounts.
+
+PROCEDURE:
+1. Create the employee Table:
+   o A table named employee is created with the following fields:
+      eid - Employee ID (Primary Key)
+      ename - Employee Name
+      age - Employee Age
+      salary - Employee Salary
+2. Insert Records into the employee Table:
+   o Six employee records are inserted into the employee table.
+3. Select All Records:
+   o Retrieves and displays all current records in the employee table.
+4. Create a Trigger:
+   o A trigger named salary is created that executes before any DELETE, INSERT, or UPDATE operation on the employee table.
+   o The trigger calculates the change in salary and uses DBMS_OUTPUT.PUT_LINE to display the old salary, new salary, and the salary difference.
+5. Update the salary:
+   o The salary for the employee with eid = 105 is increased by 500.
+6. Enable Output:
+   o SET SERVEROUTPUT ON; is used to enable the output display for the trigger messages.
+
+SOURCE CODE:
+-- Create the employee table
+CREATE TABLE employee (
+    eid NUMBER(10) PRIMARY KEY,
+    ename VARCHAR(30),
+    age NUMBER(3),
+    salary NUMBER(10)
+);
+
+-- Insert values into the employee table
+INSERT INTO employee (eid, ename, age, salary) VALUES (100, 'Senga', 27, 40000);
+INSERT INTO employee (eid, ename, age, salary) VALUES (101, 'Praveen', 29, 70000);
+INSERT INTO employee (eid, ename, age, salary) VALUES (102, 'Lavanya', 31, 20000);
+INSERT INTO employee (eid, ename, age, salary) VALUES (103, 'Shree', 36, 50000);
+INSERT INTO employee (eid, ename, age, salary) VALUES (104, 'Muthupandi', 25, 35000);
+INSERT INTO employee (eid, ename, age, salary) VALUES (105, 'Dhana Lakshmi', 35, 10000);
+
+-- Select all records from the employee table
+SELECT * FROM employee;
+
+-- Create or replace trigger
+CREATE OR REPLACE TRIGGER salary
+BEFORE DELETE OR INSERT OR UPDATE ON employee
+FOR EACH ROW
+DECLARE
+    Sal_diff NUMBER;
+BEGIN
+    IF INSERTING OR UPDATING THEN
+        Sal_diff := :NEW.salary - NVL(:OLD.salary, 0); -- Use NVL for OLD value during INSERT
+        DBMS_OUTPUT.PUT_LINE('OLD salary: ' || NVL(:OLD.salary, 0));
+        DBMS_OUTPUT.PUT_LINE('NEW salary: ' || :NEW.salary);
+        DBMS_OUTPUT.PUT_LINE('Salary difference: ' || Sal_diff);
+    END IF;
+END;
+/
+
+-- Update the salary for eid = 105
+UPDATE employee SET salary = salary + 500 WHERE eid = 105;
+
+-- To check the output, run:
+SET SERVEROUTPUT ON;
+
+OUTPUT:
+1. Initial Table Creation and Data Insertion:
+After inserting the records into the employee table:
++------+------------------+-----+--------+
+| eid  | ename            | age | salary |
++------+------------------+-----+--------+
+| 100  | Senga            | 27  | 40000  |
+| 101  | Praveen          | 29  | 70000  |
+| 102  | Lavanya          | 31  | 20000  |
+| 103  | Shree            | 36  | 50000  |
+| 104  | Muthupandi       | 25  | 35000  |
+| 105  | Dhana Lakshmi    | 35  | 10000  |
++------+------------------+-----+--------+
+
+2. Trigger Output During Update:
+When the salary for eid = 105 is updated, the output will be:
+OLD salary: 10000
+NEW salary: 10500
+Salary difference: 500

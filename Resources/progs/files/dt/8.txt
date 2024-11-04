@@ -1,0 +1,118 @@
+AIM:
+To understand the concept of advanced Database Application Development using JDBC.
+
+PROCEDURE:
+1. Create a database using MySQL.
+2. Implement JDBC concepts.
+3. Produce the output.
+
+Java Database Connectivity (JDBC):
+JDBC stands for Java Database Connectivity, which is a standard Java API for database-independent connectivity between the Java programming language and a wide range of databases.
+JDBC is a specification that provides a complete set of interfaces that allows for portable access to an underlying database.
+The JDBC library includes APIs for each of the tasks mentioned below that are commonly associated with database usage:
+- Making a connection to a database.
+- Creating SQL or MySQL statements.
+- Executing SQL or MySQL queries in the database.
+- Viewing & Modifying the resulting records.
+
+JDBC Connectivity:
+There are 5 steps to connect any Java application with the database using JDBC. These steps are as follows:
+- Register the Driver class
+- Create connection
+- Create statement
+- Execute queries
+- Close connection
+
+1) Register the Driver Class:
+The forName() method of Class class is used to register the driver class. This method is used to dynamically load the driver class.
+
+Syntax of forName() method:
+public static void forName(String className) throws ClassNotFoundException
+
+Example to register the OracleDriver class:
+Here, Java program is loading the oracle driver to establish a database connection.
+
+Class.forName("oracle.jdbc.driver.OracleDriver");
+try {
+    Class.forName("oracle.jdbc.driver.OracleDriver");
+} catch (ClassNotFoundException ex) {
+    System.out.println("Error: unable to load driver class!");
+    System.exit(1);
+}
+
+2) Create the Connection Object: 
+The getConnection() method of DriverManager class is used to establish a connection with the database.
+
+Syntax:
+1. public static Connection getConnection(String url) throws SQLException
+2. public static Connection getConnection(String name, String password) throws SQLException
+
+Example:
+Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:xe", "system", "password");
+String URL = "jdbc:oracle:thin:username/password@amrood:1521:EMP";
+Connection conn = DriverManager.getConnection(URL);
+
+3) Create the Statement Object:
+The createStatement() method of the Connection interface is used to create a statement. The object of statement is responsible for executing queries with the database.
+
+Syntax:
+public Statement createStatement() throws SQLException
+
+Example:
+Statement stmt = con.createStatement();
+
+4) Execute the Query:
+The executeQuery() method of Statement interface is used to execute queries to the database. This method returns the object of ResultSet that can be used to get all the records of a table.
+
+Syntax:
+public ResultSet executeQuery(String sql) throws SQLException
+
+Example:
+ResultSet rs = stmt.executeQuery("select * from emp");
+while (rs.next()) {
+    System.out.println(rs.getInt(1) + " " + rs.getString(2));
+}
+
+5) Close the Connection Object:
+By closing the connection object, statement and ResultSet will be closed automatically. The close() method of Connection interface is used to close the connection.
+
+Syntax:
+public void close() throws SQLException
+
+Example:
+con.close();
+
+EXAMPLE TO CONNECT JAVA APPLICATION WITH ORACLE DATABASE:
+  In this example, we are connecting to an Oracle database and getting data from emp table. Here, system and oracle are the username and password of the Oracle database.
+
+import java.sql.*;
+
+class OracleConn {
+    public static void main(String args[]) {
+        try {
+            // Register the Oracle JDBC driver
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+
+            // Establish connection with the database
+            Connection con = DriverManager.getConnection(
+                "jdbc:oracle:thin:@localhost:1521:xe", "system", "oracle"
+            );
+
+            // Create a statement object to execute queries
+            Statement stmt = con.createStatement();
+
+            // Execute the query and get the ResultSet
+            ResultSet rs = stmt.executeQuery("select * from emp");
+
+            // Process the ResultSet
+            while (rs.next()) {
+                System.out.println(rs.getInt(1) + " " + rs.getString(2) + " " + rs.getString(3));
+            }
+
+            // Close the connection
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+}

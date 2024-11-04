@@ -1,0 +1,81 @@
+AIM:
+  To create a student table to store student information and implement a trigger that captures and displays changes to the Scholar_amt field whenever records are inserted, updated, or deleted. The program demonstrates how to use triggers in SQL and outputs the changes made to the scholarship amounts.
+
+PROCEDURE:
+1. Create the student Table:
+   A table named student is created with the following fields:
+   - St_Id - Student ID (Primary Key)
+   - St_name - Student's Name
+   - Dept - Student's Department
+   - Scholar_amt - Scholarship Amount
+2. Insert Records into the student Table:
+   Five student records are inserted into the student table.
+3. Select All Records:
+   Retrieves and displays all current records in the student table.
+4. Create a Trigger:
+   A trigger named amt is created that executes before any DELETE, INSERT, or UPDATE operation on the student table.
+   The trigger calculates the change in Scholar_amt and uses DBMS_OUTPUT.PUT_LINE to display the old amount, new amount, and the total amount.
+5. Update the Scholar_amt:
+   The scholarship amount for the student with St_Id = 104 is increased by 500.
+6. Enable Output:
+   SET SERVEROUTPUT ON; is used to enable the output display for the trigger messages.
+
+SOURCE CODE:
+-- Create the student table
+CREATE TABLE student (
+    St_Id NUMBER(10) PRIMARY KEY,
+    St_name VARCHAR(20),
+    Dept VARCHAR(30),
+    Scholar_amt NUMBER(10)
+);
+
+-- Insert values into the student table
+INSERT INTO student (St_Id, St_name, Dept, Scholar_amt) VALUES (100, 'Andrew', 'BTECH', 1200);
+INSERT INTO student (St_Id, St_name, Dept, Scholar_amt) VALUES (101, 'Aslam', 'MBBS', 1100);
+INSERT INTO student (St_Id, St_name, Dept, Scholar_amt) VALUES (102, 'Akash', 'BCA', 1000);
+INSERT INTO student (St_Id, St_name, Dept, Scholar_amt) VALUES (103, 'Albert', 'Viscom', 900);
+INSERT INTO student (St_Id, St_name, Dept, Scholar_amt) VALUES (104, 'Praveen', 'BBA', 800);
+
+-- Select all records from the student table
+SELECT * FROM student;
+
+-- Create or replace trigger
+CREATE OR REPLACE TRIGGER amt
+BEFORE DELETE OR INSERT OR UPDATE ON student
+FOR EACH ROW
+DECLARE
+    Total_amt NUMBER;
+BEGIN
+    IF INSERTING OR UPDATING THEN
+        Total_amt := :NEW.Scholar_amt - NVL(:OLD.Scholar_amt, 0);
+        DBMS_OUTPUT.PUT_LINE('OLD amount: ' || NVL(:OLD.Scholar_amt, 0));
+        DBMS_OUTPUT.PUT_LINE('NEW amount: ' || :NEW.Scholar_amt);
+        DBMS_OUTPUT.PUT_LINE('Total amount: ' || Total_amt);
+    END IF;
+END;
+/
+
+-- Update the scholar_amt for St_ID = 104
+UPDATE student SET Scholar_amt = Scholar_amt + 500 WHERE St_Id = 104;
+
+-- To check the output, run:
+SET SERVEROUTPUT ON;
+
+OUTPUT:
+1. Initial Table Creation and Data Insertion:
+After inserting the records into the student table:
++-------+---------+--------+--------------+
+| St_Id | St_name | Dept   | Scholar_amt  |
++-------+---------+--------+--------------+
+| 100   | Andrew  | BTECH  | 1200         |
+| 101   | Aslam   | MBBS   | 1100         |
+| 102   | Akash   | BCA    | 1000         |
+| 103   | Albert  | Viscom | 900          |
+| 104   | Praveen | BBA    | 800          |
++-------+---------+--------+--------------+
+
+2. Trigger Output During Update:
+When the scholarship amount for St_Id = 104 is updated, the output will be:
+OLD amount: 800
+NEW amount: 1300
+Total amount: 500

@@ -1,0 +1,110 @@
+AIM:
+  To create an Employee table to store employee information, including employee ID, name, designation, salary, and age. The program demonstrates creating a table, inserting data, altering the table, updating specific records, and finally deleting all records.
+
+PROCEDURE:
+1. Create the Employee Table:
+   - The table `Employee` is created with the following fields:
+     - `Emp_id` (Employee ID) - Primary Key
+     - `Emp_name` - Employee Name
+     - `Designation` - Job Title
+     - `Salary` - Employee's Salary
+
+2. Insert Records into the Table:
+   - Five employee records are inserted, each with an ID, name, designation, and salary.
+
+3. Select All Data:
+   - Display all the current records in the `Employee` table.
+
+4. Alter the Table to Add an Age Column:
+   - Adds a new column `Age` to store the age of employees.
+
+5. Update Age Data:
+   - Sets the age for specific employees based on their names.
+
+6. Display the Updated Table:
+   - Shows the final state of the table with the new Age data.
+
+7. Delete All Records:
+   - Deletes all records from the `Employee` table, leaving it empty.
+
+SOURCE CODE:
+-- Create Employee table
+CREATE TABLE Employee (
+    Emp_id VARCHAR(50) PRIMARY KEY,
+    Emp_name VARCHAR(50),
+    Designation VARCHAR(50),
+    Salary VARCHAR(50)
+);
+
+-- Insert records into Employee table
+INSERT INTO Employee VALUES ('1', 'Andrew', 'Manager', '35000');
+INSERT INTO Employee VALUES ('2', 'Aslam', 'Manager', '35000');
+INSERT INTO Employee VALUES ('3', 'Gopika', 'Analyst', '25000');
+INSERT INTO Employee VALUES ('4', 'Pradeep', 'Clerk', '10000');
+INSERT INTO Employee VALUES ('5', 'Jeeva', 'Salesman', '12000');
+
+-- Display all records
+SELECT * FROM Employee;
+
+-- Alter table to add Age column
+ALTER TABLE Employee ADD Age VARCHAR(50);
+
+-- Display updated table structure
+SELECT * FROM Employee;
+
+-- Update Age data for specific employees
+UPDATE Employee SET Age = '45' WHERE Emp_name = 'Andrew';
+UPDATE Employee SET Age = '48' WHERE Emp_name = 'Aslam';
+UPDATE Employee SET Age = '30' WHERE Emp_name = 'Gopika';
+UPDATE Employee SET Age = '35' WHERE Emp_name = 'Clare'; -- Note: No employee named 'Clare' exists.
+UPDATE Employee SET Age = '38' WHERE Emp_name = 'Jeeva';
+
+-- Display the final updated records
+SELECT * FROM Employee;
+
+-- Delete all records from the Employee table
+DELETE FROM Employee;
+
+OUTPUT:
+1. Initial Table Creation and Data Insertion: 
+  After inserting the employee records, the table will look like this:
+    +--------+----------+-------------+--------+
+    | Emp_id | Emp_name | Designation | Salary |
+    +--------+----------+-------------+--------+
+    |   1    | Andrew   | Manager     | 35000  |
+    |   2    | Aslam    | Manager     | 35000  |
+    |   3    | Gopika   | Analyst     | 25000  |
+    |   4    | Pradeep  | Clerk       | 10000  |
+    |   5    | Jeeva    | Salesman    | 12000  |
+    +--------+----------+-------------+--------+
+
+2. After Adding the Age Column:
+  The Age column is added but initially contains NULL values.
+    +--------+----------+-------------+--------+------+
+    | Emp_id | Emp_name | Designation | Salary | Age  |
+    +--------+----------+-------------+--------+------+
+    |   1    | Andrew   | Manager     | 35000  | NULL |
+    |   2    | Aslam    | Manager     | 35000  | NULL |
+    |   3    | Gopika   | Analyst     | 25000  | NULL |
+    |   4    | Pradeep  | Clerk       | 10000  | NULL |
+    |   5    | Jeeva    | Salesman    | 12000  | NULL |
+    +--------+----------+-------------+--------+------+
+
+3. After Updating the Age Data:
+  Updates specific employees' ages:
+  Note: The update for Clare will not affect the table as no such employee exists.
+    +--------+----------+-------------+--------+------+
+    | Emp_id | Emp_name | Designation | Salary | Age  |
+    +--------+----------+-------------+--------+------+
+    |   1    | Andrew   | Manager     | 35000  |  45  |
+    |   2    | Aslam    | Manager     | 35000  |  48  |
+    |   3    | Gopika   | Analyst     | 25000  |  30  |
+    |   4    | Pradeep  | Clerk       | 10000  | NULL |
+    |   5    | Jeeva    | Salesman    | 12000  |  38  |
+    +--------+----------+-------------+--------+------+
+
+4. After Deleting All Records:
+  The table is emptied after the delete operation.
+    +--------+----------+-------------+--------+------+
+    | Emp_id | Emp_name | Designation | Salary | Age  |
+    +--------+----------+-------------+--------+------+

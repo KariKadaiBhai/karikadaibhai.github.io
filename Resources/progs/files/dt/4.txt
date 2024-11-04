@@ -1,0 +1,148 @@
+
+AIM:
+  To create two tables, Customer and Orders, in a database to manage customer information and order details. The program demonstrates inserting data into these tables and performing different types of SQL joins to retrieve combined data from both tables.
+
+PROCEDURE:
+1. Create the Customer Table:
+   - A table named Customer is created with the following fields:
+     - `Id` - Customer ID (Primary Key)
+     - `Name` - Customer's Name
+     - `Age` - Customer's Age
+     - `Address` - Customer's Address
+     - `Salary` - Customer's Salary
+
+2. Insert Records into the Customer Table:
+   - Inserts three customer records into the Customer table.
+
+3. Display All Data from the Customer Table:
+   - Retrieves and displays all the current records in the Customer table.
+
+4. Create the Orders Table:
+   - A table named Orders is created with the following fields:
+     - `O_id` - Order ID (Primary Key)
+     - `Quantity` - Quantity of items in the order
+     - `Customer_id` - ID of the customer who placed the order
+     - `Amount` - Total amount of the order
+
+5. Insert Records into the Orders Table:
+   - Inserts three records into the Orders table.
+
+6. Display All Data from the Orders Table:
+   - Retrieves and displays all the current records in the Orders table.
+
+7. Perform Various Joins Between Customer and Orders Tables:
+   - INNER JOIN: Combines records from both tables where there is a match on Customer.Id and Orders.Customer_id.
+   - LEFT JOIN: Retrieves all records from the Customer table, and the matched records from the Orders table.
+   - RIGHT JOIN: Retrieves all records from the Orders table, and the matched records from the Customer table.
+   - FULL OUTER JOIN: Retrieves all records when there is a match in either the Customer or Orders table.
+
+SOURCE CODE:
+-- Create Customer table
+CREATE TABLE Customer (
+    Id VARCHAR(50) PRIMARY KEY,
+    Name VARCHAR(50),
+    Age VARCHAR(50),
+    Address VARCHAR(50),
+    Salary VARCHAR(50)
+);
+
+-- Insert records into Customer table
+INSERT INTO Customer VALUES ('1', 'Ramesh', '32', 'Ahmedabad', '2000');
+INSERT INTO Customer VALUES ('2', 'Khinal', '25', 'Delhi', '1500');
+INSERT INTO Customer VALUES ('3', 'Komal', '22', 'Mumbai', '4500');
+
+-- Display all records from Customer table
+SELECT * FROM Customer;
+
+-- Create Orders table
+CREATE TABLE Orders (
+    O_id VARCHAR(50) PRIMARY KEY,
+    Quantity VARCHAR(50),
+    Customer_id VARCHAR(50),
+    Amount VARCHAR(50)
+);
+
+-- Insert records into Orders table
+INSERT INTO Orders VALUES ('101', '2', '3', '3000');
+INSERT INTO Orders VALUES ('102', '3', '2', '1500');
+INSERT INTO Orders VALUES ('103', '3', '4', '2060'); -- Note: Customer_id '4' does not exist in Customer table
+
+-- Display all records from Orders table
+SELECT * FROM Orders;
+
+-- Perform INNER JOIN between Customer and Orders
+SELECT Id, Name, Amount, Quantity FROM Customer
+INNER JOIN Orders ON Customer.Id = Orders.Customer_id;
+
+-- Perform LEFT JOIN between Customer and Orders
+SELECT Id, Name, Amount, Quantity FROM Customer
+LEFT JOIN Orders ON Customer.Id = Orders.Customer_id;
+
+-- Perform RIGHT JOIN between Customer and Orders
+SELECT Id, Name, Amount, Quantity FROM Customer
+RIGHT JOIN Orders ON Customer.Id = Orders.Customer_id;
+
+-- Perform FULL OUTER JOIN between Customer and Orders
+SELECT Id, Name, Amount, Quantity FROM Customer
+FULL OUTER JOIN Orders ON Customer.Id = Orders.Customer_id;
+
+OUTPUT:
+1. Initial Table Creation and Data Insertion (Customer):
+   After inserting records into the Customer table:
+   +----+--------+-----+-----------+--------+
+   | Id | Name   | Age | Address   | Salary |
+   +----+--------+-----+-----------+--------+
+   | 1  | Ramesh | 32  | Ahmedabad | 2000   |
+   | 2  | Khinal | 25  | Delhi     | 1500   |
+   | 3  | Komal  | 22  | Mumbai    | 4500   |
+   +----+--------+-----+-----------+--------+
+
+2. Table Creation and Data Insertion (Orders):
+   After inserting records into the Orders table:
+   +------+----------+-------------+--------+
+   | O_id | Quantity | Customer_id | Amount |
+   +------+----------+-------------+--------+
+   | 101  | 2        | 3           | 3000   |
+   | 102  | 3        | 2           | 1500   |
+   | 103  | 3        | 4           | 2060   | -- No matching Customer_id '4'
+   +------+----------+-------------+--------+
+
+3. INNER JOIN Output:
+   Displays rows where there are matches between Customer and Orders:
+   +----+--------+--------+----------+
+   | Id | Name   | Amount | Quantity |
+   +----+--------+--------+----------+
+   | 2  | Khinal | 1500   | 3        |
+   | 3  | Komal  | 3000   | 2        |
+   +----+--------+--------+----------+
+
+4. LEFT JOIN Output:
+   Displays all records from Customer and matching rows from Orders:
+   +----+--------+--------+----------+
+   | Id | Name   | Amount | Quantity |
+   +----+--------+--------+----------+
+   | 1  | Ramesh | NULL   | NULL     |
+   | 2  | Khinal | 1500   | 3        |
+   | 3  | Komal  | 3000   | 2        |
+   +----+--------+--------+----------+
+
+5. RIGHT JOIN Output:
+   Displays all records from Orders and matching rows from Customer:
+   +----+--------+--------+----------+
+   | Id | Name   | Amount | Quantity |
+   +----+--------+--------+----------+
+   | 2  | Khinal | 1500   | 3        |
+   | 3  | Komal  | 3000   | 2        |
+   | NULL | NULL | 2060   | 3        | -- Customer_id '4' does not exist
+   +----+--------+--------+----------+
+
+6. FULL OUTER JOIN Output:
+   Displays all records from both Customer and Orders:
+   +----+--------+--------+----------+
+   | Id | Name   | Amount | Quantity |
+   +----+--------+--------+----------+
+   | 1  | Ramesh | NULL   | NULL     |
+   | 2  | Khinal | 1500   | 3        |
+   | 3  | Komal  | 3000   | 2        |
+   | NULL | NULL | 2060   | 3        | -- Customer_id '4' does not exist
+   +----+--------+--------+----------+

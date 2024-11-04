@@ -1,0 +1,33 @@
+AIM:
+To understand the concept of advanced Database Application Development using XML.
+
+PROCEDURE:
+1. Create employee database using XML.
+2. Retrieve the database information.
+3. Produce the output.
+
+XML CODE:
+<?xml version="1.0"?>
+<employee>
+    <details>
+        <empid>101</empid>
+        <firstname>Aryan</firstname>
+        <lastname>Gupta</lastname>
+        <nickname>Raju</nickname>
+        <salary>30000</salary>
+    </details>
+    <details>
+        <empid>024</empid>
+        <firstname>Sara</firstname>
+        <lastname>Khan</lastname>
+        <nickname>Zoya</nickname>
+        <salary>25000</salary>
+    </details>
+    <details>
+        <empid>056</empid>
+        <firstname>Peter</firstname>
+        <lastname>Symon</lastname>
+        <nickname>John</nickname>
+        <salary>10000</salary>
+    </details>
+</employee>

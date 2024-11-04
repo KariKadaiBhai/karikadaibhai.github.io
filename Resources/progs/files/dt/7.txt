@@ -1,0 +1,121 @@
+Aim:
+  To create a student100 table that stores student information, including registration number, name, marks, total, and average. The program also includes PL/SQL blocks to fetch and display details of a specific student and all students from the table, demonstrating the use of cursors and output in PL/SQL.
+Procedure:
+1. Create the student100 Table:
+   o A table named student100 is created with the following fields:
+     regno - Registration number (Primary Key)
+     name - Student Name
+     mark1 - First Exam Mark
+     mark2 - Second Exam Mark
+     total - Total Marks
+     avg - Average Marks
+2. Insert Records into the student100 Table:
+   o Six student records are inserted into the student100 table.
+3. Select All Records:
+   o Retrieves and displays all current records in the student100 table.
+4. Enable Output for PL/SQL Block:
+   o SET SERVEROUTPUT ON; is used to enable output display for the DBMS messages.
+5. PL/SQL Block to Fetch Details of a Specific Student:
+   o A PL/SQL block is declared that uses a cursor to fetch details of the student with regno = 203 (Priya).
+   o It outputs the details of the specified student.
+6. PL/SQL Block to Fetch and Display All Students:
+   o A second PL/SQL block is declared that uses a cursor to fetch and display details of all students in the student100 table.
+
+Source Code:
+-- Create the student100 table
+CREATE TABLE student100 (
+    regno NUMBER(10) PRIMARY KEY,
+    name VARCHAR(20),
+    mark1 NUMBER(5),
+    mark2 NUMBER(5),
+    total NUMBER(5),
+    avg NUMBER(4,2)
+);
+
+-- Insert values into the student100 table
+INSERT INTO student100 VALUES (200, 'Andrew', 75, 89, 164, 82.00);
+INSERT INTO student100 VALUES (201, 'Vel', 92, 87, 179, 89.50);
+INSERT INTO student100 VALUES (202, 'Vasu', 79, 80, 159, 79.50);
+INSERT INTO student100 VALUES (203, 'Priya', 75, 70, 145, 72.50);
+INSERT INTO student100 VALUES (204, 'Jeeva', 70, 67, 137, 68.50);
+INSERT INTO student100 VALUES (205, 'Simbu', 73, 71, 144, 72.00);
+
+-- Select all records from the student100 table
+SELECT * FROM student100;
+
+-- Enable output for PL/SQL block
+SET SERVEROUTPUT ON;
+
+-- PL/SQL block to fetch details for a specific student
+DECLARE
+    mark student100%ROWTYPE;
+    CURSOR details IS SELECT * FROM student100 WHERE regno = 203;
+BEGIN
+    OPEN details;
+    DBMS_OUTPUT.PUT_LINE('Student details');
+    LOOP
+        FETCH details INTO mark;
+        EXIT WHEN details%NOTFOUND; -- Exit loop if no more rows are found
+        DBMS_OUTPUT.PUT_LINE('Student name: ' || mark.name);
+        DBMS_OUTPUT.PUT_LINE('Mark1: ' || mark.mark1);
+        DBMS_OUTPUT.PUT_LINE('Mark2: ' || mark.mark2);
+        DBMS_OUTPUT.PUT_LINE('Total: ' || mark.total);
+        DBMS_OUTPUT.PUT_LINE('Average: ' || mark.avg);
+    END LOOP;
+    CLOSE details;
+    DBMS_OUTPUT.PUT_LINE('Student details displayed');
+END;
+/
+
+-- PL/SQL block to fetch and display all students from student100
+DECLARE
+    s_regno student100.regno%TYPE;
+    s_name student100.name%TYPE;
+    s_mark1 student100.mark1%TYPE;
+    s_mark2 student100.mark2%TYPE;
+    s_total student100.total%TYPE;
+    s_avg student100.avg%TYPE;
+    CURSOR s_student106 IS SELECT regno, name, mark1, mark2, total, avg FROM student100;
+BEGIN
+    OPEN s_student106;
+    LOOP
+        FETCH s_student106 INTO s_regno, s_name, s_mark1, s_mark2, s_total, s_avg;
+        EXIT WHEN s_student106%NOTFOUND; -- Exit loop if no more rows are found
+        DBMS_OUTPUT.PUT_LINE(s_regno || ' ' || s_name || ' ' || s_mark1 || ' ' || s_mark2 || ' ' || s_total || ' ' || s_avg);
+    END LOOP;
+    CLOSE s_student106;
+END;
+/
+
+Output:
+1. Initial Table Creation and Data Insertion:
+After inserting the records into the student100 table:
++-------+--------+-------+-------+-------+-------+
+| regno | name   | mark1 | mark2 | total | avg   |
++-------+--------+-------+-------+-------+-------+
+| 200   | Andrew | 75    | 89    | 164   | 82.00 |
+| 201   | Vel    | 92    | 87    | 179   | 89.50 |
+| 202   | Vasu   | 79    | 80    | 159   | 79.50 |
+| 203   | Priya  | 75    | 70    | 145   | 72.50 |
+| 204   | Jeeva  | 70    | 67    | 137   | 68.50 |
+| 205   | Simbu  | 73    | 71    | 144   | 72.00 |
++-------+--------+-------+-------+-------+-------+
+
+2. Output for Specific Student (Priya):
+The output when fetching details for the student with regno = 203 will be:
+Student details
+Student name: Priya
+Mark1: 75
+Mark2: 70
+Total: 145
+Average: 72.50
+Student details displayed
+
+3. Output for All Students:
+The output when fetching and displaying all students:
+200 Andrew 75 89 164 82.00
+201 Vel 92 87 179 89.50
+202 Vasu 79 80 159 79.50
+203 Priya 75 70 145 72.50
+204 Jeeva 70 67 137 68.50
+205 Simbu 73 71 144 72.00

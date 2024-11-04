@@ -1,0 +1,96 @@
+AIM:
+To demonstrate the use of different types of SQL joins to retrieve related data from multiple tables.
+
+PROCEDURE:
+1. Students: Contains student information.
+2. Courses: Contains course information.
+3. Enrollments: Links students to the courses they are enrolled in.
+
+SOURCE CODE:
+-- Create Students table
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50)
+);
+
+-- Create Courses table
+CREATE TABLE Courses (
+    CourseID INT PRIMARY KEY,
+    CourseName VARCHAR(50)
+);
+
+-- Create Enrollments table
+CREATE TABLE Enrollments (
+    EnrollmentID INT PRIMARY KEY,
+    StudentID INT,
+    CourseID INT,
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    FOREIGN KEY (CourseID) REFERENCES Courses(CourseID)
+);
+
+-- Insert data into Students
+INSERT INTO Students (StudentID, FirstName, LastName) VALUES
+(1, 'John', 'Doe'),
+(2, 'Jane', 'Smith'),
+(3, 'Alice', 'Johnson');
+
+-- Insert data into Courses
+INSERT INTO Courses (CourseID, CourseName) VALUES
+(101, 'Mathematics'),
+(102, 'Computer Science'),
+(103, 'Biology');
+
+-- Insert data into Enrollments
+INSERT INTO Enrollments (EnrollmentID, StudentID, CourseID) VALUES
+(1, 1, 101), -- John Doe enrolled in Mathematics
+(2, 1, 102), -- John Doe enrolled in Computer Science
+(3, 2, 101), -- Jane Smith enrolled in Mathematics
+(4, 3, 103); -- Alice Johnson enrolled in Biology
+
+-- INNER JOIN
+SELECT
+    Students.FirstName,
+    Students.LastName,
+    Courses.CourseName
+FROM
+    Students
+INNER JOIN
+    Enrollments ON Students.StudentID = Enrollments.StudentID
+INNER JOIN
+    Courses ON Enrollments.CourseID = Courses.CourseID;
+
+-- Explanation of Joins:
+1. INNER JOIN:
+   - This query retrieves students who are enrolled in courses. Only records that have matching entries in both Students and Enrollments are returned.
+
+2. LEFT JOIN:
+   - This query retrieves all students, even those who are not enrolled in any courses. For students without courses, the CourseName will be NULL.
+
+3. RIGHT JOIN:
+   - This query retrieves all enrollments and the corresponding students. If there are courses with no enrolled students, the student's name will be NULL.
+
+OUTPUT:
+#### INNER JOIN Result:
+| *FirstName* | *LastName* | *CourseName*       |
+|--------------|-------------|---------------------|
+| John         | Doe         | Mathematics         |
+| John         | Doe         | Computer Science    |
+| Jane         | Smith       | Mathematics         |
+| Alice        | Johnson     | Biology             |
+
+#### LEFT JOIN Result:
+| *FirstName* | *LastName* | *CourseName*       |
+|--------------|-------------|---------------------|
+| John         | Doe         | Mathematics         |
+| John         | Doe         | Computer Science    |
+| Jane         | Smith       | Mathematics         |
+| Alice        | Johnson     | NULL                |
+
+#### RIGHT JOIN Result:
+| *FirstName* | *LastName* | *CourseName*       |
+|--------------|-------------|---------------------|
+| John         | Doe         | Mathematics         |
+| John         | Doe         | Computer Science    |
+| Jane         | Smith       | Mathematics         |
+| NULL         | NULL        | Biology             |

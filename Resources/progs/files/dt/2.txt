@@ -1,0 +1,95 @@
+AIM:
+  To create a Student table in a database to store student information, including registration number, name, marks, total, and age. The program demonstrates basic operations like creating a table, inserting records, altering the table structure, and updating data.
+
+PROCEDURE:
+1. Create the Student Table:
+   - The table `Student` is created with the following fields:
+     - `Regno` (Registration Number) - Primary Key
+     - `Name` - Student's Name
+     - `Mark1` and `Mark2` - Marks scored by the student in two subjects
+     - `Total` - Total of `Mark1` and `Mark2`
+
+2. Insert Data into the Table:
+   - Five students' records are inserted with registration numbers, names, marks, and total marks.
+
+3. Select All Data:
+   - Display all the records in the table to view the inserted data.
+
+4. Alter the Table to Add an Age Column:
+   - Adds a new column `Age` to the `Student` table to store students' ages.
+
+5. Update the Age Data:
+   - Sets the age for all students to 21.
+   - Updates specific ages for students `PRIYA` and `ALBERT` as 23 and 22, respectively.
+
+6. Select All Data Again:
+   - Displays the updated table with the `Age` column and modified data.
+
+SOURCE CODE:
+-- Create Student table
+CREATE TABLE Student (
+    Regno VARCHAR(50) PRIMARY KEY,
+    Name VARCHAR(50),
+    Mark1 INT,
+    Mark2 INT,
+    Total INT
+);
+
+-- Insert data into Student table
+INSERT INTO Student (Regno, Name, Mark1, Mark2, Total) VALUES ('01', 'MOHANA', 40, 45, 85);
+INSERT INTO Student (Regno, Name, Mark1, Mark2, Total) VALUES ('02', 'ALBERT', 45, 45, 90);
+INSERT INTO Student (Regno, Name, Mark1, Mark2, Total) VALUES ('03', 'VASU', 30, 50, 80);
+INSERT INTO Student (Regno, Name, Mark1, Mark2, Total) VALUES ('04', 'PRIYA', 37, 42, 79);
+INSERT INTO Student (Regno, Name, Mark1, Mark2, Total) VALUES ('05', 'JEEVA', 50, 45, 95);
+
+-- Display all records
+SELECT * FROM Student;
+
+-- Alter table to add Age column
+ALTER TABLE Student ADD Age INT;
+
+-- Display updated table structure
+SELECT * FROM Student;
+
+-- Update Age data
+UPDATE Student SET Age = 21;
+UPDATE Student SET Age = 23 WHERE Name = 'PRIYA';
+UPDATE Student SET Age = 22 WHERE Name = 'ALBERT';
+
+-- Display final records
+SELECT * FROM Student;
+
+OUTPUT:
+1.Initial Table Creation and Data Insertion: 
+  After inserting the student records, the table will look like this:
+    +-------+--------+-------+-------+-------+
+    | Regno | Name   | Mark1 | Mark2 | Total |
+    +-------+--------+-------+-------+-------+
+    | 01    | MOHANA |  40   |  45   |   85  |
+    | 02    | ALBERT |  45   |  45   |   90  |
+    | 03    | VASU   |  30   |  50   |   80  |
+    | 04    | PRIYA  |  37   |  42   |   79  |
+    | 05    | JEEVA  |  50   |  45   |   95  |
+    +-------+--------+-------+-------+-------+
+2.After Altering the Table to Add the Age Column:
+  The Age column is added, but initially, it will contain NULL values.
+    +-------+--------+-------+-------+-------+------+
+    | Regno | Name   | Mark1 | Mark2 | Total | Age  |
+    +-------+--------+-------+-------+-------+------+
+    | 01    | MOHANA |  40   |  45   |   85  | NULL |
+    | 02    | ALBERT |  45   |  45   |   90  | NULL |
+    | 03    | VASU   |  30   |  50   |   80  | NULL |
+    | 04    | PRIYA  |  37   |  42   |   79  | NULL |
+    | 05    | JEEVA  |  50   |  45   |   95  | NULL |
+    +-------+--------+-------+-------+-------+------+
+3.After Updating the Age for All Students:
+  Sets all students' ages to 21, then modifies PRIYA and ALBERT's ages.
+    +-------+--------+-------+-------+-------+------+
+    | Regno | Name   | Mark1 | Mark2 | Total | Age  |
+    +-------+--------+-------+-------+-------+------+
+    | 01    | MOHANA |  40   |  45   |   85  |  21  |
+    | 02    | ALBERT |  45   |  45   |   90  |  22  |
+    | 03    | VASU   |  30   |  50   |   80  |  21  |
+    | 04    | PRIYA  |  37   |  42   |   79  |  23  |
+    | 05    | JEEVA  |  50   |  45   |   95  |  21  |
+    +-------+--------+-------+-------+-------+------+

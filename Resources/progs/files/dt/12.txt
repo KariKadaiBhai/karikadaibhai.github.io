@@ -1,0 +1,119 @@
+AIM:
+  To demonstrate the normalization of a Students table through various normal forms (1NF, 2NF, 3NF, and BCNF) in SQL. This process aims to eliminate data redundancy and ensure data integrity in the database.
+
+PROCEDURE:
+1. Create the Initial Students Table (Not Normalized):
+   - Define the Students table with a Subjects column that violates the First Normal Form (1NF) by allowing non-atomic values.
+2. Normalize to First Normal Form (1NF):
+   - Create a new table Students_1NF to ensure atomic values in the Subject column.
+3. Normalize to Second Normal Form (2NF):
+   - Create separate tables Students_2NF and Subjects_2NF to remove partial dependencies.
+4. Normalize to Third Normal Form (3NF):
+   - Create a Departments table to eliminate transitive dependencies and a new Subjects_3NF table to link with the Departments.
+5. Normalize to Boyce-Codd Normal Form (BCNF):
+   - Analyze the tables for BCNF compliance, which requires no non-trivial functional dependencies.
+6. Analyze and Test:
+   - Write a query to check data integrity and ensure the relationships among tables are working as intended.
+
+SOURCE CODE:
+-- Step 1: Create the initial Students table (not normalized)
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    Name VARCHAR(50),
+    Subjects VARCHAR(100) -- This column violates 1NF
+);
+
+-- Insert initial data
+INSERT INTO Students (StudentID, Name, Subjects) VALUES
+(1, 'John Doe', 'Math, Science'),
+(2, 'Jane Smith', 'Math, History');
+
+-- Step 2: Normalize to First Normal Form (1NF)
+-- Create a new table for 1NF
+CREATE TABLE Students_1NF (
+    StudentID INT,
+    Name VARCHAR(50),
+    Subject VARCHAR(50), -- Atomic values
+    PRIMARY KEY (StudentID, Subject)
+);
+
+-- Insert data into Students_1NF
+INSERT INTO Students_1NF (StudentID, Name, Subject) VALUES
+(1, 'John Doe', 'Math'),
+(1, 'John Doe', 'Science'),
+(2, 'Jane Smith', 'Math'),
+(2, 'Jane Smith', 'History');
+
+-- Step 3: Normalize to Second Normal Form (2NF)
+-- Create separate tables for 2NF
+CREATE TABLE Students_2NF (
+    StudentID INT PRIMARY KEY,
+    Name VARCHAR(50)
+);
+
+CREATE TABLE Subjects_2NF (
+    StudentID INT,
+    Subject VARCHAR(50),
+    PRIMARY KEY (StudentID, Subject),
+    FOREIGN KEY (StudentID) REFERENCES Students_2NF(StudentID)
+);
+
+-- Insert data into Students_2NF
+INSERT INTO Students_2NF (StudentID, Name) VALUES
+(1, 'John Doe'),
+(2, 'Jane Smith');
+
+-- Insert data into Subjects_2NF
+INSERT INTO Subjects_2NF (StudentID, Subject) VALUES
+(1, 'Math'),
+(1, 'Science'),
+(2, 'Math'),
+(2, 'History');
+
+-- Step 4: Normalize to Third Normal Form (3NF)
+-- Create Departments table to remove transitive dependencies
+CREATE TABLE Departments (
+    Subject VARCHAR(50) PRIMARY KEY,
+    Department VARCHAR(50)
+);
+
+-- Insert data into Departments
+INSERT INTO Departments (Subject, Department) VALUES
+('Math', 'Science Department'),
+('Science', 'Science Department'),
+('History', 'Arts Department');
+
+-- Create new Subjects table to link with Departments
+CREATE TABLE Subjects_3NF (
+    Subject VARCHAR(50),
+    Department VARCHAR(50),
+    PRIMARY KEY (Subject),
+    FOREIGN KEY (Subject) REFERENCES Departments(Subject)
+);
+
+-- Step 5: Normalize to Boyce-Codd Normal Form (BCNF)
+-- Assuming that we already have Subjects and Departments structured correctly, no further action needed.
+
+-- Step 6: Analyze and Test
+-- Query to check data integrity
+SELECT
+    s.Name,
+    sub.Subject,
+    dep.Department
+FROM
+    Students_2NF s
+JOIN
+    Subjects_2NF sub ON s.StudentID = sub.StudentID
+JOIN
+    Departments dep ON sub.Subject = dep.Subject;
+
+OUTPUT:
+After running the final query, the output will display a list of students, their respective subjects, and the departments associated with those subjects. The output would look something like this:
++-----------+---------+---------------------+
+| Name      | Subject | Department          |
++-----------+---------+---------------------+
+| John Doe  | Math    | Science Department   |
+| John Doe  | Science | Science Department   |
+| Jane Smith| Math    | Science Department   |
+| Jane Smith| History | Arts Department     |
++-----------+---------+---------------------+

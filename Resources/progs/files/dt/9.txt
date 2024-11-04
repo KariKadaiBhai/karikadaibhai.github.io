@@ -1,0 +1,62 @@
+AIM:
+  To create, insert, update, retrieve, and delete records in a Student database using SQL commands and manage data in a relational table format.
+
+PROCEDURE:
+1. Create a table named Student to store student information.
+   - Columns include:
+     - StudentID: Unique identifier for each student.
+     - FirstName: Student's first name.
+     - LastName: Student's last name.
+     - Age: Student's age.
+     - Major: Student's major field of study.
+
+2. Insert records into the Student table:
+   - Add entries for a few students with unique StudentIDs.
+
+3. Update a student's age:
+   - Change the age of a specific student.
+
+4. Retrieve all records:
+   - Use the SELECT statement to display all records in the Student table.
+
+5. Delete a student record:
+   - Remove a student with a specific StudentID.
+
+6. Display the final table:
+   - Use SELECT again to show the remaining records in the table.
+
+SOURCE CODE:
+CREATE TABLE Student (
+    StudentID VARCHAR(50) PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Age INT,
+    Major VARCHAR(50)
+);
+
+INSERT INTO Student (StudentID, FirstName, LastName, Age, Major)
+VALUES ('S001', 'John', 'Doe', 20, 'Computer Science');
+
+INSERT INTO Student (StudentID, FirstName, LastName, Age, Major)
+VALUES ('S002', 'Jane', 'Smith', 22, 'Mathematics');
+
+INSERT INTO Student (StudentID, FirstName, LastName, Age, Major)
+VALUES ('S003', 'Alice', 'Johnson', 21, 'Biology');
+
+UPDATE Student
+SET Age = Age + 1
+WHERE StudentID = 'S001';
+
+SELECT * FROM Student;
+
+DELETE FROM Student
+WHERE StudentID = 'S003';
+
+SELECT * FROM Student;
+
+OUTPUT:
+After executing the SQL commands, the final table will look like this:
+| StudentID | FirstName | LastName | Age | Major              |
+|-----------|-----------|----------|-----|--------------------|
+| S001      | John      | Doe      | 21  | Computer Science    |
+| S002      | Jane      | Smith    | 22  | Mathematics        |
