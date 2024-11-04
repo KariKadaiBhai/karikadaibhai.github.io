@@ -1,0 +1,47 @@
+AIM:
+  To write the shell script to find given string is palindrome or not.
+
+ALGORITHM:
+  Step1: Start the program.
+  Step2: Enter the string.
+  Step3: Calculate the length of the string using “wc” command.
+  Step4: Using while loop, check whether the length of string is greater than zero.
+  Step5: Using the test command, cut each other character and store it in a temporary variable.
+  Step6: Check reverse of the string and entered string are equal, if it is equal print string is palindrome else print string is not a palindrome.
+  Step7: Stop the program.
+
+PROGRAM:
+#!/bin/bash
+
+echo "Enter the string:"
+read str
+
+len=$(echo -n "$str" | wc -c)
+rev=""
+
+while [ $len -gt 0 ]; do
+  temp=$(echo "$str" | cut -c $len)
+  rev="$rev$temp"
+  len=$((len - 1))
+done
+
+echo "The reversed string is $rev"
+
+if [ "$rev" = "$str" ]; then
+  echo "$str is a palindrome"
+else
+  echo "$str is not a palindrome"
+fi
+
+OUTPUT:
+[root@srmist ~]$ ./findIfPalindrome.sh
+Enter the string:
+madam
+The reversed string is madam
+madam is a palindrome
+
+[root@srmist ~]$ ./findIfPalindrome.sh
+Enter the string:
+hello
+The reversed string is olleh
+hello is not a palindrome

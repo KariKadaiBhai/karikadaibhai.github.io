@@ -1,0 +1,39 @@
+AIM:
+  To write the shell script to find the length of the string and reverse the string.
+
+ALGORITHM:
+  Step1: Start the program.
+  Step2: Enter the string.
+  Step3: Calculate the length of the string using “wc” command.
+  Step4: Using while loop, check whether the length of string is greater than zero.
+  Step5: Using the test command, cut each other character and store it in a temporary variable.
+  Step6: Stop the program.
+
+PROGRAM:
+#!/bin/bash
+
+echo "Enter the string:"
+read str
+
+len=`echo $str | wc -c`
+len=`expr $len - 1`
+
+echo "The length of the string is $len"
+
+rev=""
+
+while [ $len -gt 0 ]
+do
+  temp=`echo $str | cut -c $len`
+  rev=`echo $rev$temp`
+  len=`expr $len - 1`
+done
+
+echo "The reversed string is $rev"
+
+OUTPUT:
+[root@srmist ~]$ ./rev_CalcLengthOfString.sh
+Enter the string:
+welcome
+The length of the string is 7
+The reversed string is emoclew

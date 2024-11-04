@@ -1,0 +1,41 @@
+AIM:
+  To write a shell script to generate Fibonacci series.
+
+ALGORITHM:
+  Step1: Start the program.
+  Step2: Enter the number.
+  Step3: Initialize “b” and “d” is equal to zero.
+  Step4: Using while loop, the Fibonacci series is generated.
+  Step5: Terminate the program.
+
+PROGRAM:
+#!/bin/bash
+
+echo "Enter the number of terms in the Fibonacci series:"
+read n
+a=0
+b=1
+count=0
+
+echo "Fibonacci series up to $n terms:"
+while [ $count -lt $n ]; do
+  echo $a
+  fn=$((a + b))
+  a=$b
+  b=$fn
+  count=$((count + 1))
+done
+
+echo "Program terminated."
+
+OUTPUT:
+[root@srmist ~]$ ./fibonacciSeries.sh
+Enter the number of terms in the Fibonacci series:
+5
+Fibonacci series up to 5 terms:
+0
+1
+1
+2
+3
+Program terminated.

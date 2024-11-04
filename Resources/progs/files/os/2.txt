@@ -1,0 +1,59 @@
+AIM:   
+  To write  a program for implementing process management using the following system calls of UNIX operating  system: fork, exec, getpid, exit, wait, close. 
+
+ALGORITHM:  
+  1. Start the program. 
+  2. Read the input from the command line. 
+  3. Use fork() system call to create process, getppid() system call used to get the parent process ID and getpid() system call used to get the current process ID 
+  4. execvp() system call used to execute that command given on that command line argument 
+  5. execlp() system call used to execute specified command. 
+  6. Open the directory at specified in command line input. 
+  7. Display the directory contents. 8. Stop the program.
+
+PROGRAM:
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <string.h>
+
+int main(int argc, char *argv[]) {
+    int pid;
+    char s[100];
+
+    pid = fork();
+    if (pid < 0) {
+        perror("Fork error");
+    } else if (pid > 0) {
+        wait(NULL);
+        printf("\nParent Process:\n");
+        printf("\n\tParent Process ID: %d\n", getpid());
+        execlp("cat", "cat", argv[1], (char *)0);
+        perror("Can't execute cat");
+    } else {
+        printf("\nChild Process:");
+        printf("\n\tChild Process Parent ID: %d", getppid());
+        sprintf(s, "\n\tChild Process ID: %d", getpid());
+        write(1, s, strlen(s));
+        printf("\n");
+        execvp(argv[2], &argv[2]);
+        perror("Can't execute command");
+    }
+
+    return 0;
+}
+
+OUTPUT:
+[root@srmist ~]$ touch test.txt
+[root@srmist ~]$ gcc -o a.out systemCallsInUnix.c
+[root@srmist ~]$ ./a.out test.txt ls
+
+Child Process:
+
+	Child Process ID: 3480	Child Process Parent ID: 3479
+a.out  systemCallsInUnix.c  test.txt
+
+Parent Process:
+
+	Parent Process ID: 3479
+

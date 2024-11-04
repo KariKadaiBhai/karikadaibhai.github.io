@@ -1,0 +1,41 @@
+AIM:
+  To write the shell script to find net and gross pay.
+
+ALGORITHM:
+  Step1: Start the program.
+  Step2: Enter the basic pay.
+  Step3: Calculate HRA, PF and DA.
+  Step4: Calculate gross pay, using HRA, PF and DA.
+  Step5: Calculate the net pay.
+  Step6: Stop the program.
+
+PROGRAM:
+#!/bin/bash
+
+echo "Enter basic pay:"
+read basic_pay
+echo "Enter DA (Dearness Allowance):"
+read da
+echo "Enter HRA (House Rent Allowance):"
+read hra
+echo "Enter PF (Provident Fund):"
+read pf
+
+gross_pay=$(expr $basic_pay + $da + $hra)
+net_pay=$(expr $gross_pay - $pf)
+
+echo "Net Pay: $net_pay"
+echo "Gross Pay: $gross_pay"
+
+OUTPUT:
+[root@srmist ~]$ ./calculateEmployeePayroll.sh
+Enter basic pay:
+5000
+Enter DA (Dearness Allowance):
+1000
+Enter HRA (House Rent Allowance):
+800
+Enter PF (Provident Fund):
+500
+Net Pay: 6300
+Gross Pay: 6800
