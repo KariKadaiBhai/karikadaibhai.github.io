@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Database Recovery</title>
+  </head>
+  <style>
+    body {
+      background-color: #121212;
+      color: #edf5f8;
+    }
+  </style>
+  <body>
+    <p>
+      AIM:<br />
+      &nbsp;To understand the concept of database recovery.<br /><br />
+
+      PROCEDURE:<br />
+      &nbsp;1. Select the system / application.<br />
+      &nbsp;2. Include database recovery methods.<br />
+      &nbsp;3. Design the system for database recovery.<br /><br />
+
+      RECOVERY:<br />
+      &nbsp;Recovery is the set of concepts, procedures, and strategies involved
+      in protecting the database against data loss caused by media failure or
+      user errors. The purpose of a backup and recovery strategy is to protect
+      the database and reconstruct lost data.<br /><br />
+
+      RECOVERY TECHNIQUES:<br /><br />
+
+      RECOVERY MANAGER (RMAN):<br />
+      &nbsp;RMAN is an Oracle Database utility that integrates with an Oracle
+      database to perform backup and recovery activities. It maintains a
+      repository of historical backup metadata in the control file of every
+      backed-up database and can also maintain a centralized backup repository
+      called a recovery catalog. RMAN is an Oracle Database feature and does not
+      require separate installation.<br /><br />
+
+      &nbsp;As an alternative, you can use operating system commands such as
+      Linux's <code>dd</code> for backing up and restoring files, and the
+      SQL*Plus <code>RECOVER</code> command for media recovery. Although
+      user-managed backup and recovery are fully supported, RMAN is recommended
+      for its integration with Oracle Database and simplified administration.<br /><br />
+
+      <img src="../img/dt/recovery/RMAN_arch.png" alt="rman_arch" /><br /><br />
+
+      BASIC CONCEPTS OF DATA RECOVERY ADVISOR:<br />
+      &nbsp;The Data Recovery Advisor tool automatically diagnoses persistent
+      data failures, presents appropriate repair options, and executes repairs
+      at the user's request. It improves the manageability and reliability of an
+      Oracle database and helps reduce recovery time.<br /><br />
+
+      USER INTERFACES TO DATA RECOVERY ADVISOR:<br />
+      &nbsp;Data Recovery Advisor has both command-line and GUI interfaces,
+      accessible via Oracle Enterprise Manager Database Control and Grid
+      Control.<br /><br />
+
+      &nbsp;The database includes a framework called Health Monitor for running
+      diagnostic checks. A checker assesses the health of the database or its
+      components and performs data integrity checks, which can be invoked
+      reactively or proactively.<br /><br />
+
+      &nbsp;Failures, detected through integrity checks, are recorded in the
+      Automatic Diagnostic Repository (ADR). The Data Recovery Advisor
+      identifies repair options and validates them before execution. If an
+      automated repair is chosen, Oracle Database performs the repair, verifies
+      its success, and closes the failure.<br /><br />
+
+      DATA FILE RECOVERY:<br />
+      &nbsp;Data file recovery repairs a lost or damaged current data file or
+      control file. It can also recover changes lost when a tablespace went
+      offline without the OFFLINE NORMAL option.<br /><br />
+
+      &nbsp;&bull; Complete recovery<br />
+      &nbsp;&bull; Incomplete recovery<br /><br />
+
+      COMPLETE RECOVERY:<br />
+      &nbsp;Complete recovery applies all redo changes contained in the archived
+      and online logs to a backup. It is performed after a media failure damages
+      data files or the control file, and can be applied to the database,
+      tablespace, or data file.<br /><br />
+
+      INCOMPLETE RECOVERY:<br />
+      &nbsp;Incomplete recovery, or point-in-time recovery, results in a
+      noncurrent version of the database. This recovery does not apply all redo
+      generated after the restored backup. Typically performed to undo user
+      errors when Flashback Database is not an option, it requires restoring all
+      data files from backups and opening the database with the
+      <code>RESETLOGS</code> option upon completion.<br /><br />
+    </p>
+  </body>
+</html>

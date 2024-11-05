@@ -70,5 +70,30 @@
     "ContentToDisplay": "12. Study of Normalization Techniques",
     "ReadFile": "dt\\12.txt",
     "Downloadable": false
+  },
+  "13": {
+    "ProgramName": "13casestudy_database_admin",
+    "ContentToDisplay": "13. Case Study for Database Administration",
+    "ReadFile": "dt\\13.html",
+    "Downloadable": false
+  },
+  "14": {
+    "ProgramName": "14casestudy_recovery",
+    "ContentToDisplay": "14. Case Study for Recovery",
+    "ReadFile": "dt\\14.html",
+    "Downloadable": false
+  },
+  "15": {
+    "ProgramName": "15casestudy_database_backups",
+    "ContentToDisplay": "15. Case Study for Database Backups",
+    "ReadFile": "dt\\15.html",
+    "Downloadable": false
+  },
+  "MANUAL": {
+    "ProgramName": "MANUAL",
+    "ContentToDisplay": "FULL LAB MANUAL",
+    "ReadFile": "dt\\dt.html",
+    "DownloadFile": "dt\\dt.pdf",
+    "Downloadable": true
   }
 }

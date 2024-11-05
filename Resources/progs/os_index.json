@@ -30,7 +30,7 @@
   "3.3": {
     "ProgramName": "3.3. Calculate Employee Payroll",
     "ContentToDisplay": "3.3. Calculate Employee Payroll",
-    "ReadFile": "os\\3,2.txt",
+    "ReadFile": "os\\3,3.txt",
     "DownloadFile": "os\\programs\\calculateEmployeePayroll.sh",
     "Downloadable": true
   },
