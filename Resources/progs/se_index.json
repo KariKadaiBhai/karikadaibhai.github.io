@@ -1,16 +1,79 @@
 {
   "1": {
-    "ProgramName": "1. Simple AI Techniques Implementation",
-    "ContentToDisplay": "1. Simple AI Techniques Implementation",
-    "ReadFile": "1.txt",
-    "DownloadFile": "1.py",
+    "ProgramName": "1. Problem Statement",
+    "ContentToDisplay": "1. Problem Statement",
+    "ReadFile": "se\\1.html",
+    "DownloadFile": "se\\1.pdf",
     "Downloadable": true
   },
   "2": {
-    "ProgramName": "2. Tic-Tac-Toe Game Implementation",
-    "ContentToDisplay": "2. Tic-Tac-Toe Game Implementation",
-    "ReadFile": "2.txt",
-    "DownloadFile": "2.py",
+    "ProgramName": "2. System Requirements Specification",
+    "ContentToDisplay": "2. System Requirements Specification",
+    "ReadFile": "se\\2.html",
+    "DownloadFile": "se\\2.pdf",
+    "Downloadable": true
+  },
+  "3": {
+    "ProgramName": "3. Library Management System",
+    "ContentToDisplay": "3. Library Management System",
+    "ReadFile": "se\\3.html",
+    "DownloadFile": "se\\3.pdf",
+    "Downloadable": true
+  },
+  "4": {
+    "ProgramName": "4. Automated Banking System",
+    "ContentToDisplay": "4. Automated Banking System",
+    "ReadFile": "se\\4.html",
+    "DownloadFile": "se\\4.pdf",
+    "Downloadable": true
+  },
+  "5": {
+    "ProgramName": "5. Airline Reservation System",
+    "ContentToDisplay": "5. Airline Reservation System",
+    "ReadFile": "se\\5.html",
+    "DownloadFile": "se\\5.pdf",
+    "Downloadable": true
+  },
+  "6": {
+    "ProgramName": "6. Employee Management Application",
+    "ContentToDisplay": "6. Employee Management Application",
+    "ReadFile": "se\\6.html",
+    "DownloadFile": "se\\6.pdf",
+    "Downloadable": true
+  },
+  "7": {
+    "ProgramName": "7. Hospital Management System",
+    "ContentToDisplay": "7. Hospital Management System",
+    "ReadFile": "se\\7.html",
+    "DownloadFile": "se\\7.pdf",
+    "Downloadable": true
+  },
+  "8": {
+    "ProgramName": "8. Development of a Blood Bank Management System",
+    "ContentToDisplay": "8. Development of a Blood Bank Management System",
+    "ReadFile": "se\\8.html",
+    "DownloadFile": "se\\8.pdf",
+    "Downloadable": true
+  },
+  "9_13": {
+    "ProgramName": "9. 13 - Book Resale Application",
+    "ContentToDisplay": "9. 13 - Book Resale Application",
+    "ReadFile": "se\\13,9.html",
+    "DownloadFile": "se\\13,9.pdf",
+    "Downloadable": true
+  },
+  "10_15": {
+    "ProgramName": "10. 15 - Applying Data Mining In Cyber Crime",
+    "ContentToDisplay": "10. 15 - Applying Data Mining In Cyber Crime",
+    "ReadFile": "se\\15,10.html",
+    "DownloadFile": "se\\15,10.pdf",
+    "Downloadable": true
+  },
+  "manual": {
+    "ProgramName": "full_lab_manual",
+    "ContentToDisplay": "FULL LAB MANUAL",
+    "ReadFile": "se\\se.html",
+    "DownloadFile": "se\\se.pdf",
     "Downloadable": true
   }
 }
