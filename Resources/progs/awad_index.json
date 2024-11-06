@@ -28,5 +28,75 @@
     "ContentToDisplay": "5. INTERSET TABLE CONCEPT",
     "ReadFile": "awad\\5.txt",
     "Downloadable": false
+  },
+  "m1": {
+    "ProgramName": "1SAMPLE_APPLICATION",
+    "ContentToDisplay": "1. SAMPLE APPLICATION",
+    "ReadFile": "awad\\1.html",
+    "DownloadFile": "awad\\1.pdf",
+    "Downloadable": true
+  },
+  "m2": {
+    "ProgramName": "2PLANNING_A_REAL_APPLICATIONS",
+    "ContentToDisplay": "2. PLANNING A REAL APPLICATIONS",
+    "ReadFile": "awad\\2.html",
+    "DownloadFile": "awad\\2.pdf",
+    "Downloadable": true
+  },
+  "m3": {
+    "ProgramName": "3DEVELOPMENT_HARDWARE",
+    "ContentToDisplay": "3. DEVELOPMENT HARDWARE",
+    "ReadFile": "awad\\3.html",
+    "DownloadFile": "awad\\3.pdf",
+    "Downloadable": true
+  },
+  "m4": {
+    "ProgramName": "4How To Move Data From View Controller",
+    "ContentToDisplay": "4. How To Move Data From View Controller",
+    "ReadFile": "awad\\4.html",
+    "DownloadFile": "awad\\4.pdf",
+    "Downloadable": true
+  },
+  "m5": {
+    "ProgramName": "5Settings up the HTML framework with Jade templates and Bootstrap",
+    "ContentToDisplay": "5. Settings up the HTML framework with Jade templates and Bootstrap",
+    "ReadFile": "awad\\5.html",
+    "DownloadFile": "awad\\5.pdf",
+    "Downloadable": true
+  },
+  "m6": {
+    "ProgramName": "6Take The Data Out Of The Views And Make The Smater",
+    "ContentToDisplay": "6. Take The Data Out Of The Views And Make The Smater",
+    "ReadFile": "awad\\6.html",
+    "DownloadFile": "awad\\6.pdf",
+    "Downloadable": true
+  },
+  "m7": {
+    "ProgramName": "7Pushing Up The Data",
+    "ContentToDisplay": "7. Pushing Up The Data",
+    "ReadFile": "awad\\7.html",
+    "DownloadFile": "awad\\7.pdf",
+    "Downloadable": true
+  },
+  "m8": {
+    "ProgramName": "8Making The Application use right database",
+    "ContentToDisplay": "8. Making The Application use right database",
+    "ReadFile": "awad\\8.html",
+    "DownloadFile": "awad\\8.pdf",
+    "Downloadable": true
+  },
+  "m9": {
+    "ProgramName": "9Reading Data From MongoDB",
+    "ContentToDisplay": "9. Reading Data From MongoDB",
+    "ReadFile": "awad\\9.html",
+    "DownloadFile": "awad\\9.pdf",
+    "Downloadable": true
+  },
+  "m10": {
+    "ProgramName": "10Building The API Request",
+    "ContentToDisplay": "10. Building The API Request",
+    "ReadFile": "awad\\10.html",
+    "DownloadFile": "awad\\10.pdf",
+    "Downloadable": true
   }
 }
