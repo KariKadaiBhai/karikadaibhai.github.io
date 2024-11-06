@@ -1,0 +1,85 @@
+Exercise 2: Create a Database, Collection, Insert Documents, Perform a Lookup (Join), and Remove a Document
+Create a database called school.
+Create two collections: students and courses.
+Insert sample documents into both collections.
+Use $lookup to perform a join-like operation to find students with their course details.
+Remove a document from the students collection
+
+> use school
+< switched to db school
+> db.createCollection("students")
+  db.createCollection("courses")
+< { ok: 1 }
+> db.students.insertMany([
+    { student_id: 1, name: "John", course_ids: ["C101", "C102"] },
+    { student_id: 2, name: "Jane", course_ids: ["C103"] }
+  ])
+
+  db.courses.insertMany([
+    { course_id: "C101", title: "Math", credits: 3 },
+    { course_id: "C102", title: "Science", credits: 4 },
+    { course_id: "C103", title: "History", credits: 3 }
+  ])
+< {
+    acknowledged: true,
+    insertedIds: {
+      '0': ObjectId(‘6726b441db27dc2ed3ee4e39'),
+      '1': ObjectId(‘6726b441db27dc2ed3ee4e3a'),
+      '2': ObjectId(‘6726b441db27dc2ed3ee4e3b')
+    }
+  }
+> db.students.aggregate([
+    {
+      $lookup: {
+        from: "courses",
+        localField: "course_ids",
+        foreignField: "course_id",
+        as: "course_details"
+      }
+    }
+  ])
+< {
+    _id: ObjectId('6726b441db27dc2ed3ee4e37'),
+    student_id: 1,
+    name: ‘John',
+    course_ids: [
+      'C101',
+      'C102'
+    ],
+    course_details: [
+      {
+        _id: ObjectId('6726b441db27dc2ed3ee4e39'),
+        course_id: 'C101‘,
+        title: 'Math',
+        credits: 3
+      },
+      {
+        _id: ObjectId('6726b441db27dc2ed3ee4e3a'),
+        course_id: 'C102',
+        title: 'Science',
+        credits: 4
+      }
+    ]
+  }
+  {
+    _id: ObjectId('6726b441db27dc2ed3ee4e38'),
+    student_id: 2,
+    name: 'Jane',
+    course_ids: [
+      'C103'
+    ],
+    course_details: [
+      {
+        _id: ObjectId('6726b441db27dc2ed3ee4e3b'),
+        course_id: 'C103',
+        title: 'History',
+        credits: 3
+      }
+    ]
+  }
+> db.students.deleteOne({ name: "Jane" })
+< {
+    acknowledged: true,
+    deletedCount: 1
+  }
+school>

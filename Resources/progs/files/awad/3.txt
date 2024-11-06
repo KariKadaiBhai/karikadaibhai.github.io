@@ -1,0 +1,60 @@
+Exercise 3: Create a Database, Collection, Insert Documents, and Use Union Concept
+Create a database named retail.
+Create two collections: products and discounted_products.
+Insert sample documents into both collections.
+Use the $unionWith aggregation to combine results from both collections.
+
+> use retail
+< switched to db retail
+> db.createCollection("products")
+  db.createCollection("discounted_products")
+< { ok: 1 }
+> db.products.insertMany([
+    { product_id: 1, name: "Laptop", category: "Electronics", price: 1000 },
+    { product_id: 2, name: "Chair", category: "Furniture", price: 100 }
+  ])
+  db.discounted_products.insertMany([
+    { product_id: 3, name: "Tablet", category: "Electronics", price: 300, discount: 10 },
+    { product_id: 4, name: "Desk", category: "Furniture", price: 150, discount: 5 }
+  ])
+< {
+    acknowledged: true,
+    insertedIds: {
+      '0': ObjectId( ' 6726b5f0a823f9d81fb08234' ) ,
+      '1': ObjectId('6726b5f0aa23f9d81fb08235')
+    }
+  }
+> db.products.aggregate([
+    { $unionWith: { coll: "discounted_products" } }
+  ])
+< {
+    _id: ObjectId('6726b5f0aa23f9d81fb08232'),
+    product_id: 1,
+    name: 'Laptop',
+    category: 'Electronics',
+    price: 1000
+  }
+  {
+    _id: Obj ectId( ' 6726b5f08323f9d81fb08233 ' ) ,
+    product_id: 2,
+    name: 'Chair',
+    category: 'Furniture',
+    price: 100
+  }
+  {
+    _id: ObjectId('6726b5f0aaz3f9d81fb08234'),
+    product_id: 3,
+    name: 'Tablet',
+    category: 'Electronics',
+    price: 300,
+    discount: 10
+  }
+  {
+    _id: ObjectId('6726b5f03323f9d81fb08235'),
+    product_id: 4,
+    name: 'Desk',
+    category: 'Furniture',
+    price: 150,
+    discount: 5
+  }
+retail>

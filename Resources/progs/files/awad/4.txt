@@ -1,0 +1,50 @@
+Exercise 4: Create a Database, Collection, Insert Documents, Use Alter (Update), and Filter Documents
+Create a database called library.
+Create a collection called books.
+Insert multiple documents into the books collection.
+Use the updateMany command to alter book records by adding a location field.
+Filter documents to show books in the Science category.
+
+> use library
+< switched to db library
+> db.createCollection("books")
+< { ok: 1 }
+> db.books.insertMany([
+    { book_id: 1, title: "Physics Basics", category: "Science", author: "John Doe" },
+    { book_id: 2, title: "Chemistry 101", category: "Science", author: "Jane Smith" },
+    { book_id: 3, title: "Art of Coding", category: "Programming", author: "Mark Lee" }
+  ])
+< {
+    acknowledged: true,
+    insertedIds: {
+      '0' : ObjeCtId( '6726b6b0762d6d1946f05154' ) ,
+      '1': ObjectId('6726b6b0762d6d1946f05155'),
+      '2' : ObjectId( ' 6726b6b0762d6d1946f05156 ')
+    }
+  }
+> db.books.updateMany({}, { $set: { location: "Main Library" } })
+< {
+    acknowledged: true,
+    insertedId: null,
+    matchedCount: 3,
+    modifiedCount: 3,
+    upsertedCount: 0
+  }
+> db.books.find({ category: "Science" })
+< {
+    _id: ObjectId ( ' 6726b6b0762d6d1946f05154' ) ,
+    book_id: 1,
+    title: 'Physics Basics',
+    category: 'Science',
+    author: 'John Doe',
+    location: 'Main Library'
+  }
+  {
+    _id: ObjectId('6726b6b0762d6d1946f05155'),
+    book_id: 2,
+    title: 'Chemistry 101',
+    category: 'Science',
+    author: 'Jane Smith',
+    location: 'Main Library'
+  }
+library>

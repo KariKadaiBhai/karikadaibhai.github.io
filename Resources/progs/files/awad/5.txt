@@ -1,0 +1,241 @@
+Exercise 5: INTERSET TABLE CONCEPT
+MongoDB Example Program
+This program will demonstrate the following collections:
+Users
+Accounts
+Transactions
+Products
+Orders
+
+> use myDatabase
+< switched to db myDatabase
+> db.createCollection("users")
+< { ok: 1 }
+> db.users.insertMany([
+    { user_id: 1, name: "Alice", email: "alice@example.com" },
+    { user_id: 2, name: "Bob", email: "bob@example.com" },
+    { user_id: 3, name: "Charlie", email: "charlie@example.com" }
+  ])
+< {
+    acknowledged: true,
+    insertedIds: {
+      '0': ObjectId( '6726b922fl3d18037700deC0 ' ) ,
+      '1': ObjectId('6726b922f13d1a037700dec1'),
+      '2': ObjectId( '6726b922f13d1a037700dec2')
+    }
+  }
+> db.createCollection("accounts")
+  db.accounts.insertMany([
+    { account_id: 1, user_id: 1, balance: 1000 },
+    { account_id: 2, user_id: 2, balance: 1500 },
+    { account_id: 3, user_id: 1, balance: 500 }
+  ])
+< {
+    acknowledged: true,
+    insertedIds: {
+      '0' : ObjectId( ' 6726b928fl3d18037700dec3 ' ) ,
+      '1' : ObjectId('6726b928f13d18037700dec4'),
+      '2': ObjectId('6726b928f13d13037700dec5')
+    }
+  }
+> db.createCollection("transactions")
+  db.transactions.insertMany([
+    { transaction_id: 1, account_id: 1, amount: 200, type: "deposit" },
+    { transaction_id: 2, account_id: 1, amount: 100, type: "withdrawal" },
+    { transaction_id: 3, account_id: 2, amount: 300, type: "deposit" }
+  ])
+< {
+    acknowledged: true,
+    insertedIds: {
+      '0' : ObjectId('6726b92ff13d13037700dec6 ') ,
+      '1': ObjectId('6726b92ff13d1a037700dec7'),
+      '2': ObjectId('6726b92ffl3d1a037700dec8')
+    }
+  }
+> db.createCollection("products")
+  db.products.insertMany([
+    { product_id: 1, name: "Laptop", price: 1000 },
+    { product_id: 2, name: "Phone", price: 500 },
+    { product_id: 3, name: "Tablet", price: 300 }
+  ])
+< {
+    acknowledged: true,
+    insertedIds: {
+      '0': ObjectId('6726b936f13d1a037700dec9'),
+      '1': ObjectId('6726b936f13d1a037700deca'),
+      '2' : ObjectId ( '6726b936f13d18037700decb ')
+    }
+  }
+> db.createCollection("orders")
+  db.orders.insertMany([
+    { order_id: 1, user_id: 1, product_id: 1, quantity: 1 },
+    { order_id: 2, user_id: 2, product_id: 2, quantity: 2 },
+    { order_id: 3, user_id: 3, product_id: 3, quantity: 1 }
+  ])
+< {
+    acknowledged: true,
+    insertedIds: {
+      '0': ObjectId('6726b93cf13d1a037700decc'),
+      '1': ObjectId('6726b93cf13d1a037700decd'),
+      '2': ObjectId('6726b93cf13d13037700dece')
+    }
+  }
+> db.users.aggregate([
+  {
+    $lookup: {
+      from: "users",
+      localField: "user_id",
+      foreignField: "user_id",
+      as: "user_info"
+    }
+  }
+]).pretty()
+< {
+    _id: ObjectId('6726b93cf13d1a037700decc'),
+    order_id: l,
+    user_id: 1,
+    product_id: 1,
+    quantity: 1,
+    user_info: [
+      {
+        _id: ObjectId('6726b922f13d1a037700dec0'),
+        user_id: 1,
+        name: 'Alice',
+        email: 'alice@example.com'
+      }
+    ]
+  }
+  {
+    _id: ObjectId('6726b93cf13d1a037700decd'),
+    order_id: 2,
+    user_id: 2,
+    product_id: 2,
+    quantity: 2,
+    user_info: [
+      {
+        _id: ObjectId( ' 6726b922f13d1a037700decl' ) ,
+        user_id: 2,
+        name: 'Bob',
+        email: 'bob@example.com'
+      }
+    ]
+  }
+  {
+    _id: ObjectId('6726b93cf13dla037700dece'),
+    order_id: 3,
+    user_id: 3,
+    product_id: 3,
+    quantity: 1,
+    user_info: [
+      {
+        _id: ObjectId( ' 6726b922f13d13037700dec2' ) ,
+        user_id: 3,
+        name: 'Charlie',
+        email: 'charlie@example.com'
+      }
+    ]
+  }
+>
+db.transactions.aggregate([
+  {
+    $lookup: {
+      from: "accounts",
+      localField: "account_id",
+      foreignField: "account_id",
+      as: "account_info"
+    }
+  },
+  {
+    $unwind: "$account_info"
+  },
+  {
+    $lookup: {
+      from: "users",
+      localField: "account_info.user_id",
+      foreignField: "user_id",
+      as: "user_info"
+    }
+  },
+  {
+    $unwind: "$user_info"
+  },
+  {
+    $match: { "user_info.user_id": 1 }
+  }
+]).pretty()
+< {
+    _id: ObjectId('6726b92ff13d13037700dec6'),
+    transaction_id: 1,
+    account_id: 1,
+    amount: 200,
+    type: 'deposit',
+    account_info: {
+      _id: ObjectId('6726b928f13d13037700dec3'),
+      account_id: 1,
+      user_id: 1,
+      balance: 1000
+    },
+    user_info: {
+      _id: ObjectId('6726b922f13d1a037700dec0'),
+      user_id: 1,
+      name: 'Alice',
+      email: 'alice@example.com'
+    }
+  }
+  {
+    _id: ObjectId('6726b92ff13d18037700dec7'),
+    transaction_id: 2,
+    account_id: 1,
+    amount: 100,
+    type: 'withdrawal',
+    account_info: {
+      _id: ObjectId(‘6726b928f13d1a037700dec3'),
+      account_id: 1,
+      user_id: 1,
+      balance: 1000
+    },
+    user_info: {
+      _id: ObjectId('6726b922f13d13037700dec0'),
+      user_id: 1,
+      name: 'Alice',
+      email: 'alice@example.com'
+    }
+  }
+> db.products.find({ price: { $lt: 600 } }).pretty()
+< {
+    _id: ObjectId('6726b936f13d1a037700deca‘),
+    product_id: 2,
+    name: 'Phone',
+    price: 500
+  }
+  {
+    _id: ObjectId('6726b936f13d1a037700decb'),
+    product_id: 3,
+    name: 'Tablet',
+    price: 300
+  }
+> db.accounts.update0ne(
+    { account_id: 1 },
+    { $set: { balance: 1200 } }
+  )
+<{
+    acknowledged: true,
+    insertedId: null,
+    matchedCount: 1,
+    modifiedCount: 1,
+    upsertedCount: 0
+  }
+> db.users.delete0ne({ user_id: 3 })
+<{
+    acknowledged: true,
+    insertedId: null,
+    matchedCount: 1,
+    modifiedCount: 1,
+    upsertedCount: 0
+  }
+> db.users.delete0ne({ user_id: 3 })
+<{
+    acknowledged: true,
+    deletedCount: 1
+  }
+myDatabase>

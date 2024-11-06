@@ -1,0 +1,46 @@
+Exercise 1: Create a Database, Collection, Insert Documents, and View Documents
+Create a database named company.
+Create a collection called employees.
+Insert multiple documents into the employees collection.
+Retrieve and view all documents
+
+> use company
+< switched to db company
+> db.createCollection("employees")
+< { ok: 1 }
+> db.employees.insertMany([
+    { emp_id: 1, name: "Alice", department: "HR", salary: 50000 },
+    { emp_id: 2, name: "Bob", department: "Finance", salary: 60000 },
+    { emp_id: 3, name: "Charlie", department: "IT", salary: 70000 }
+  ])
+< {
+    acknowledged: true,
+    insertedIds: {
+      '0': ObjectId('6726b302140f9bf4b6c5f305 ') ,
+      '1': ObjectId( ' 6726b302140f9bf4b5c5f306 ' ) ,
+      ‘2': ObjectId(‘6726b302l40f9bf4b6c5f307')
+    }
+  }
+> db.employees.find()
+< {
+    _id: ObjectId('6726b302140f9bf4b6c5f305'),
+    emp_id: 1,
+    name: 'Alice',
+    department: 'HR',
+    salary: 50000
+  }
+  {
+    _id: ObjectId('6726b302140f9bf4b6c5f306'),
+    emp_id: 2,
+    name: 'Bob',
+    department: 'Finance',
+    salary: 60000
+  }
+  {
+    _id: ObjectId('6726b302140f9bf4b6c5f307'),
+    emp_id: 3,
+    name: 'Charlie',
+    department: 'IT',
+    salary: 70000
+  }
+company>

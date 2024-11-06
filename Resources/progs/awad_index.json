@@ -1,16 +1,32 @@
 {
   "1": {
-    "ProgramName": "1. Simple AI Techniques Implementation",
-    "ContentToDisplay": "1. Simple AI Techniques Implementation",
-    "ReadFile": "1.txt",
-    "DownloadFile": "1.py",
-    "Downloadable": true
+    "ProgramName": "1Create a Database, Collection, Insert Documents, and View Documents",
+    "ContentToDisplay": "1. Create a Database, Collection, Insert Documents, and View Documents",
+    "ReadFile": "awad\\1.txt",
+    "Downloadable": false
   },
   "2": {
-    "ProgramName": "2. Tic-Tac-Toe Game Implementation",
-    "ContentToDisplay": "2. Tic-Tac-Toe Game Implementation",
-    "ReadFile": "2.txt",
-    "DownloadFile": "2.py",
-    "Downloadable": true
+    "ProgramName": "2Create a Database, Collection, Insert Documents, Perform a Lookup (Join), and Remove a Document",
+    "ContentToDisplay": "2. Create a Database, Collection, Insert Documents, Perform a Lookup (Join), and Remove a Document",
+    "ReadFile": "awad\\2.txt",
+    "Downloadable": false
+  },
+  "3": {
+    "ProgramName": "3Create a Database, Collection, Insert Documents, and Use Union Concept",
+    "ContentToDisplay": "3. Create a Database, Collection, Insert Documents, and Use Union Concept",
+    "ReadFile": "awad\\3.txt",
+    "Downloadable": false
+  },
+  "4": {
+    "ProgramName": "4Create a Database, Collection, Insert Documents, Use Alter (Update), and Filter Documents",
+    "ContentToDisplay": "4. Create a Database, Collection, Insert Documents, Use Alter (Update), and Filter Documents",
+    "ReadFile": "awad\\4.txt",
+    "Downloadable": false
+  },
+  "5": {
+    "ProgramName": "5INTERSET TABLE CONCEPT",
+    "ContentToDisplay": "5. INTERSET TABLE CONCEPT",
+    "ReadFile": "awad\\5.txt",
+    "Downloadable": false
   }
 }
